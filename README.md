@@ -1,32 +1,26 @@
-# React + TypeScript + Vite
+# MILO — Community-Powered City Settlement Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**New city. Familiar people.**
 
-Currently, two official plugins are available:
+MILO is a community-powered platform designed to help people
+settle into new cities by connecting them with people from
+their hometown, language, and cultural backgrounds.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Vision
 
-## React Compiler
+Making every new city feel a little more like home.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development
 
-## Expanding the Oxlint configuration
+MILO is currently in its early development stage.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Tech Stack
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+---
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Built with ❤️ in India.
