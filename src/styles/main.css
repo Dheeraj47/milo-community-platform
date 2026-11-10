@@ -1,0 +1,329 @@
+/* ==========================================================================
+   MILO DESIGN SYSTEM — THE MODERN SETTLEMENT PLATFORM
+   ========================================================================== */
+
+:root {
+  /* Brand Palette */
+  --forest-green: #102B27;
+  --forest-dark: #0B1D1A;
+  --forest-light: #183F39;
+  --sage-green: #D6E8CF;
+  --sage-soft: #E9F3E5;
+  --sage-border: #C4DCBB;
+  --warm-ivory: #F7F5EF;
+  --soft-amber: #E8B978;
+  --soft-amber-light: #FCF5EB;
+  --soft-amber-dark: #CF9950;
+  --charcoal-green: #26332F;
+  --charcoal-muted: #536460;
+  --charcoal-light: #7E908C;
+  --mist: #E8E9E3;
+  --mist-light: #F3F4EE;
+  --white: #FFFFFF;
+
+  /* Typography */
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(16, 43, 39, 0.05);
+  --shadow-md: 0 4px 12px rgba(16, 43, 39, 0.08);
+  --shadow-lg: 0 12px 28px -4px rgba(16, 43, 39, 0.10);
+  --shadow-xl: 0 20px 40px -8px rgba(16, 43, 39, 0.14);
+
+  /* Borders & Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--warm-ivory);
+  color: var(--charcoal-green);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--warm-ivory);
+  color: var(--charcoal-green);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--forest-green);
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layout Utilities */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--warm-ivory);
+}
+
+.section-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-wrapper {
+    padding: 0 2.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-wrapper {
+    padding: 0 3rem;
+  }
+}
+
+/* Section Header Typography */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--sage-soft);
+  color: var(--forest-green);
+  border: 1px solid var(--sage-border);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--forest-green);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.75rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--charcoal-muted);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+.section-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+/* Button Variants */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.975rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--forest-green);
+  color: var(--warm-ivory);
+  border: 1px solid var(--forest-green);
+  box-shadow: 0 4px 14px rgba(16, 43, 39, 0.18);
+}
+
+.btn-primary:hover {
+  background-color: var(--forest-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 43, 39, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-amber {
+  background-color: var(--soft-amber);
+  color: var(--forest-green);
+  border: 1px solid var(--soft-amber-dark);
+  font-weight: 700;
+}
+
+.btn-amber:hover {
+  background-color: #f0c386;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(232, 185, 120, 0.35);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--forest-green);
+  border: 1.5px solid var(--forest-green);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(16, 43, 39, 0.05);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--charcoal-green);
+}
+
+.btn-ghost:hover {
+  color: var(--forest-green);
+  background-color: rgba(16, 43, 39, 0.04);
+}
+
+.btn-sage {
+  background-color: var(--sage-soft);
+  color: var(--forest-green);
+  border: 1px solid var(--sage-border);
+}
+
+.btn-sage:hover {
+  background-color: var(--sage-green);
+  transform: translateY(-1px);
+}
+
+/* Pill / Tag component */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: var(--mist);
+  color: var(--charcoal-green);
+}
+
+.tag-pill.sage {
+  background-color: var(--sage-soft);
+  color: var(--forest-green);
+  border: 1px solid var(--sage-border);
+}
+
+.tag-pill.amber {
+  background-color: var(--soft-amber-light);
+  color: #8c5b16;
+  border: 1px solid #ebd3af;
+}
+
+.tag-pill.forest {
+  background-color: rgba(16, 43, 39, 0.08);
+  color: var(--forest-green);
+}
+
+/* Card base */
+.milo-card {
+  background-color: var(--white);
+  border: 1px solid var(--mist);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.milo-card:hover {
+  border-color: #cbd4c9;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+/* Micro animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Demo Notice Banner */
+.demo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--charcoal-muted);
+  background-color: rgba(232, 233, 227, 0.7);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--mist);
+  letter-spacing: 0.02em;
+}
+
+.demo-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--soft-amber);
+}
+

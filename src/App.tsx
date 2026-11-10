@@ -1,122 +1,172 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { HowItWorks } from './components/HowItWorks';
+import { CorePillars } from './components/CorePillars';
+import { CityDiscovery } from './components/CityDiscovery';
+import { CommunityPreview } from './components/CommunityPreview';
+import { FinalCTA } from './components/FinalCTA';
+import { Footer } from './components/Footer';
+import { AuthModal } from './components/AuthModal';
+import { Toast } from './components/Toast';
+import type { ToastMessage } from './components/Toast';
+import type { CommunityMember } from './types';
 
-function App() {
-  const [count, setCount] = useState(0)
+export function App() {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<'join' | 'login'>('join');
+  const [toast, setToast] = useState<ToastMessage | null>(null);
+
+  // Cross-component filter coordination
+  const [previewHometown, setPreviewHometown] = useState<string>('Jaipur');
+  const [previewCity, setPreviewCity] = useState<string>('Pune');
+
+  const showToast = (title: string, message: string, type: 'success' | 'info' = 'success') => {
+    setToast({
+      id: Date.now().toString(),
+      title,
+      message,
+      type,
+    });
+  };
+
+  const handleOpenAuth = (mode: 'join' | 'login') => {
+    setAuthModalMode(mode);
+    setAuthModalOpen(true);
+  };
+
+  const handleFindCommunity = (hometown?: string, targetCity?: string) => {
+    if (hometown) setPreviewHometown(hometown);
+    if (targetCity) setPreviewCity(targetCity);
+
+    const el = document.getElementById('community-preview');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleExploreCities = () => {
+    const el = document.getElementById('explore-cities');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleSelectCityForPreview = (cityName: string) => {
+    setPreviewCity(cityName);
+    const el = document.getElementById('community-preview');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    showToast(
+      `${cityName} Community Filtered`,
+      `Showing verified newcomers, mentors and tiffin services in ${cityName}.`,
+      'info'
+    );
+  };
+
+  const handleConnect = (member: CommunityMember) => {
+    showToast(
+      `Intro Request Sent to ${member.name}!`,
+      `Frontend Demo: In production, ${member.name} will receive a message to help you settle into ${member.neighborhood}, ${member.currentCity}.`,
+      'success'
+    );
+  };
+
+  const handleSelectPillarAction = (pillarId: string) => {
+    if (pillarId === 'community') {
+      handleFindCommunity('Jaipur', 'Pune');
+    } else if (pillarId === 'living') {
+      showToast(
+        'Zero-Brokerage Stays Filtered',
+        'Viewing roommate pairings and PGs matched by diet and lifestyle in Pune & Bengaluru.',
+        'info'
+      );
+      handleFindCommunity();
+    } else if (pillarId === 'local-discovery') {
+      showToast(
+        'Authentic Tiffin Radar',
+        'Viewing verified home-cooked tiffins delivering to Baner, Hinjewadi, and Viman Nagar.',
+        'info'
+      );
+      handleFindCommunity();
+    } else {
+      showToast(
+        'Weekend Meetups & Chai Clubs',
+        'Showing upcoming badminton, morning runs, and coffee walks for newcomers.',
+        'info'
+      );
+      handleFindCommunity();
+    }
+  };
+
+  const handleSubscribe = (email: string) => {
+    showToast(
+      'Relocation Guide Sent!',
+      `We've sent our comprehensive Pune & Bengaluru newcomer handbook to ${email}.`,
+      'success'
+    );
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-container">
+      {/* 1. Navigation Bar */}
+      <Navbar onOpenAuth={handleOpenAuth} />
 
-      <div className="ticks"></div>
+      <main>
+        {/* 2. Hero Section */}
+        <Hero
+          onFindCommunityClick={handleFindCommunity}
+          onExploreCitiesClick={handleExploreCities}
+          onOpenAuth={handleOpenAuth}
+        />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {/* 3. How MILO Works */}
+        <HowItWorks onGetStartedClick={() => handleOpenAuth('join')} />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* 4. Four Core Pillars */}
+        <CorePillars onSelectPillarAction={handleSelectPillarAction} />
+
+        {/* 5. City Discovery */}
+        <CityDiscovery
+          onSelectCityForPreview={handleSelectCityForPreview}
+        />
+
+        {/* 6. Community Preview (Interactive Discovery) */}
+        <CommunityPreview
+          selectedHometown={previewHometown}
+          onHometownChange={setPreviewHometown}
+          selectedCity={previewCity}
+          onCityChange={setPreviewCity}
+          onConnectClick={handleConnect}
+          onOpenAuth={handleOpenAuth}
+        />
+
+        {/* 7. Final CTA */}
+        <FinalCTA
+          onJoinClick={() => handleOpenAuth('join')}
+          onExploreCitiesClick={handleExploreCities}
+        />
+      </main>
+
+      {/* 8. Footer */}
+      <Footer
+        onCityClick={handleSelectCityForPreview}
+        onSubscribe={handleSubscribe}
+        onOpenAuth={handleOpenAuth}
+      />
+
+      {/* Interactive Demonstration Modals & Toast */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        defaultMode={authModalMode}
+        onSuccess={(msg) => showToast('Settlement Circle Joined', msg, 'success')}
+      />
+
+      <Toast toast={toast} onClose={() => setToast(null)} />
+    </div>
+  );
 }
 
-export default App
+export default App;
