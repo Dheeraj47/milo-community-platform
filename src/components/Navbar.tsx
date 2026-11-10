@@ -51,39 +51,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F7F5EF]/90 backdrop-blur-xl border-b border-[#E5E2D9] transition-all">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F7F5EF]/85 backdrop-blur-2xl border-b border-[#102B27]/10 transition-all shadow-[0_4px_20px_rgba(16,43,39,0.03)]">
       <div className="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-lg">
         {/* Brand Logo & Tag */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
+        <a href="#" className="flex items-center gap-3 shrink-0 group">
           {/* Reliable, Crisp Geometric SVG Logo */}
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 44 44"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="shrink-0"
-          >
-            <rect width="44" height="44" rx="12" fill="#102B27" />
-            <path
-              d="M11 32V16L18 25.5L22 20L26 25.5L33 16V32"
-              stroke="#D6E8CF"
-              strokeWidth="3.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <circle cx="22" cy="13.5" r="2.8" fill="#E8B978" />
-          </svg>
-          <span className="font-headline-sm text-headline-sm font-bold text-primary-container tracking-tight">
-            MILO
-          </span>
-          <span className="hidden lg:inline-flex items-center px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-label-caps tracking-widest uppercase">
-            City Settlement
-          </span>
+          <div className="relative">
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 44 44"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="shrink-0 transition-transform group-hover:scale-105"
+            >
+              <rect width="44" height="44" rx="12" fill="#102B27" />
+              <path
+                d="M11 32V16L18 25.5L22 20L26 25.5L33 16V32"
+                stroke="#D6E8CF"
+                strokeWidth="3.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="22" cy="13.5" r="2.8" fill="#E8B978" />
+            </svg>
+            <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-[#F7F5EF]" />
+          </div>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <span className="font-headline-sm text-lg font-extrabold text-primary-container tracking-tight">
+                MILO
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-fixed font-label-caps text-[10px] tracking-wider uppercase font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                Live in 4 Hubs
+              </span>
+            </div>
+            <span className="hidden lg:inline text-[10px] text-on-surface-variant font-medium tracking-wide">
+              Community-Powered City Settlement
+            </span>
+          </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-space-sm px-space-xs py-space-xs rounded-full bg-surface-container-low/60">
+        <nav className="hidden md:flex items-center gap-1 px-1.5 py-1 rounded-full bg-surface-container/70 border border-outline-variant/30 backdrop-blur-md">
           {navItems.map((item) => {
             const isActive = activePath === item.path;
             return (
@@ -91,10 +102,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
                 key={item.path}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href, item.path)}
-                className={`px-space-md py-space-xs rounded-full transition-colors ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-surface-container text-primary-container font-semibold'
-                    : 'font-label-md text-label-md text-on-surface-variant hover:text-on-surface'
+                    ? 'bg-primary-container text-on-primary shadow-xs'
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60'
                 }`}
               >
                 {item.label}
@@ -104,32 +115,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="flex items-center gap-space-md shrink-0">
+        <div className="flex items-center gap-3 shrink-0">
           <button
             type="button"
             onClick={() => onOpenAuth('login')}
-            className="hidden sm:inline-block font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs cursor-pointer"
+            className="hidden sm:inline-block font-label-md text-xs font-semibold text-primary-container hover:text-primary transition-colors px-3 py-1.5 rounded-full hover:bg-surface-container cursor-pointer"
           >
             Log In
           </button>
           <button
             type="button"
             onClick={() => onOpenAuth('join')}
-            className="inline-flex items-center gap-space-sm px-space-lg py-2.5 rounded-full bg-primary-container hover:bg-[#26332F] text-on-primary font-label-md text-label-md transition-all shadow-[0_4px_12px_-2px_rgba(16,43,39,0.12)] hover:scale-[1.02] cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-container hover:bg-[#183F39] text-on-primary font-label-md text-xs font-bold transition-all shadow-[0_4px_14px_rgba(16,43,39,0.18)] hover:scale-[1.02] cursor-pointer shimmer-btn"
           >
             <span>Get Started</span>
-            <span className="font-bold text-tertiary-fixed-dim">→</span>
+            <span className="material-symbols-outlined text-sm text-tertiary-fixed-dim">
+              arrow_forward
+            </span>
           </button>
           <div
-            className="flex items-center pl-space-xs border-l border-outline-variant/40 cursor-pointer"
+            className="flex items-center pl-2 border-l border-outline-variant/40 cursor-pointer"
             onClick={() => onOpenAuth('login')}
             title="Demo Member Profile"
           >
-            <img
-              alt="Profile"
-              className="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container/10"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRw6sq-w_5DDD-Nmf5I4wwBIQcf29dhU0izwXNFeBIzoREh1p51hFoaY1utBa2tZ4j3nAXfzTAViSZhzslOXuWBlPkcf28uKvnXic93lnQ9p0a-lYI24l_1vUhm8NDn6-UpPmbYG0Bji7kQ778GDVZOS7Voc95K8x-deGqiYlZYtHxPto4j0WnUHbUu-N4jjNyzvMtjMzkVdhDzl3If8zrPGHjh1XcuasuO5ifK0Eb"
-            />
+            <div className="relative">
+              <img
+                alt="Profile"
+                className="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container/20 hover:ring-secondary transition-all"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRw6sq-w_5DDD-Nmf5I4wwBIQcf29dhU0izwXNFeBIzoREh1p51hFoaY1utBa2tZ4j3nAXfzTAViSZhzslOXuWBlPkcf28uKvnXic93lnQ9p0a-lYI24l_1vUhm8NDn6-UpPmbYG0Bji7kQ778GDVZOS7Voc95K8x-deGqiYlZYtHxPto4j0WnUHbUu-N4jjNyzvMtjMzkVdhDzl3If8zrPGHjh1XcuasuO5ifK0Eb"
+              />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-1 ring-white" />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

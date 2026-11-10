@@ -234,88 +234,128 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
               </div>
             </div>
 
-            {/* Real-Time Dynamic Result Preview Box */}
-            <div className="lg:col-span-5 bg-surface-container-low p-6 rounded-3xl flex flex-col justify-between h-full shadow-inner">
+            {/* Real-Time Dynamic Result Preview Box - Digital Settler Pass Style */}
+            <div className="lg:col-span-5 bg-gradient-to-br from-[#102B27] to-[#183F39] text-on-primary p-7 rounded-3xl flex flex-col justify-between shadow-2xl relative overflow-hidden border border-white/10">
+              {/* Subtle ambient light */}
+              <div className="absolute top-0 right-0 w-48 h-48 bg-secondary-fixed/15 rounded-full blur-2xl pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-label-caps text-label-caps text-secondary font-bold uppercase tracking-wider">
-                    LIVE MATCH PREVIEW (SAMPLE)
+                {/* Pass Header */}
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-tertiary-fixed-dim text-sm">
+                      confirmation_number
+                    </span>
+                    <span className="font-label-caps text-[10px] tracking-widest uppercase text-tertiary-fixed-dim font-bold">
+                      DIGITAL SETTLER PASS · SAMPLE
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/30">
+                    98% COMPATIBLE
                   </span>
-                  <span className="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed text-xs font-semibold">
-                    Ready in 2 min
-                  </span>
-                </div>
-                <div className="font-headline-sm text-headline-sm text-primary-container mb-4">
-                  {originName} → {destName} Match Results
                 </div>
 
-                {/* Matches List */}
-                <div className="flex flex-col gap-3">
-                  <div className="p-3.5 bg-surface-container-lowest rounded-2xl shadow-xs flex items-center justify-between">
+                {/* Route Badges */}
+                <div className="flex items-center justify-between gap-3 mb-6 bg-white/5 p-4 rounded-2xl border border-white/5">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-outline-variant tracking-wider">
+                      Origin
+                    </span>
+                    <h4 className="font-headline-sm text-base font-extrabold text-white">
+                      {originName}
+                    </h4>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="material-symbols-outlined text-tertiary-fixed-dim text-lg animate-pulse">
+                      arrow_right_alt
+                    </span>
+                    <span className="text-[9px] text-outline-variant">Direct Circle</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[10px] uppercase font-bold text-outline-variant tracking-wider">
+                      Destination
+                    </span>
+                    <h4 className="font-headline-sm text-base font-extrabold text-white">
+                      {destName}
+                    </h4>
+                  </div>
+                </div>
+
+                {/* Matches Breakdown */}
+                <div className="flex flex-col gap-2.5">
+                  <div className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5">
                     <div className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-primary-container">
-                        <span className="material-symbols-outlined text-lg">group</span>
+                      <span className="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+                        <span className="material-symbols-outlined text-base">group</span>
                       </span>
                       <div>
-                        <p className="font-label-md text-label-md text-on-surface font-semibold">
+                        <p className="font-label-md text-xs text-white font-semibold">
                           {matchMetrics.peers}
                         </p>
-                        <p className="text-xs text-on-surface-variant">{matchMetrics.peerLoc}</p>
+                        <p className="text-[11px] text-outline-variant">{matchMetrics.peerLoc}</p>
                       </div>
                     </div>
-                    <span className="material-symbols-outlined text-secondary text-base">
-                      check_circle
+                    <span className="material-symbols-outlined text-emerald-400 text-sm">
+                      verified
                     </span>
                   </div>
 
-                  <div className="p-3.5 bg-surface-container-lowest rounded-2xl shadow-xs flex items-center justify-between">
+                  <div className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5">
                     <div className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary-container">
-                        <span className="material-symbols-outlined text-lg">apartment</span>
+                      <span className="w-8 h-8 rounded-lg bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary-fixed">
+                        <span className="material-symbols-outlined text-base">apartment</span>
                       </span>
                       <div>
-                        <p className="font-label-md text-label-md text-on-surface font-semibold">
+                        <p className="font-label-md text-xs text-white font-semibold">
                           {matchMetrics.flats}
                         </p>
-                        <p className="text-xs text-on-surface-variant">{matchMetrics.flatLoc}</p>
+                        <p className="text-[11px] text-outline-variant">{matchMetrics.flatLoc}</p>
                       </div>
                     </div>
-                    <span className="material-symbols-outlined text-secondary text-base">
-                      check_circle
+                    <span className="material-symbols-outlined text-emerald-400 text-sm">
+                      verified
                     </span>
                   </div>
 
-                  <div className="p-3.5 bg-surface-container-lowest rounded-2xl shadow-xs flex items-center justify-between">
+                  <div className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5">
                     <div className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-primary-container">
-                        <span className="material-symbols-outlined text-lg">skillet</span>
+                      <span className="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+                        <span className="material-symbols-outlined text-base">skillet</span>
                       </span>
                       <div>
-                        <p className="font-label-md text-label-md text-on-surface font-semibold">
+                        <p className="font-label-md text-xs text-white font-semibold">
                           {matchMetrics.tiffins}
                         </p>
-                        <p className="text-xs text-on-surface-variant">{matchMetrics.tiffinDesc}</p>
+                        <p className="text-[11px] text-outline-variant">{matchMetrics.tiffinDesc}</p>
                       </div>
                     </div>
-                    <span className="material-symbols-outlined text-secondary text-base">
-                      check_circle
+                    <span className="material-symbols-outlined text-emerald-400 text-sm">
+                      verified
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-surface-container">
+              {/* Perforated Divider */}
+              <div className="relative my-4">
+                <div className="border-t border-dashed border-white/20" />
+                <div className="absolute -left-10 -top-3 w-6 h-6 rounded-full bg-surface" />
+                <div className="absolute -right-10 -top-3 w-6 h-6 rounded-full bg-surface" />
+              </div>
+
+              <div>
                 <button
                   type="button"
                   onClick={handlePassClick}
-                  className="w-full py-3.5 rounded-full bg-primary-container hover:bg-[#203c37] text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#E8B978] to-[#f0c58a] hover:from-[#dca961] hover:to-[#e4b574] text-[#102B27] font-label-md text-xs font-extrabold flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-[1.02] cursor-pointer shimmer-btn"
                 >
-                  <span>Unlock Connected Settler Pass</span>
-                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  <span>Claim Your Settler Pass</span>
+                  <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </button>
-                <p className="text-center text-[11px] text-on-surface-variant mt-2">
-                  Sample Demonstration · Simulated WhatsApp Circle Preview
-                </p>
+                <div className="flex items-center justify-between text-[10px] text-outline-variant mt-2 px-1">
+                  <span>Pass ID: ML-{originName.slice(0, 3).toUpperCase()}-{destName.slice(0, 3).toUpperCase()}</span>
+                  <span>Free Prototype Access</span>
+                </div>
               </div>
             </div>
           </div>

@@ -19,74 +19,78 @@ export const TrustSafety: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Pillar 1 */}
-          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+          <div className="p-7 rounded-3xl bg-white/[0.05] backdrop-blur-md border border-white/10 hover:border-[#D6E8CF]/40 hover:bg-white/[0.08] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-tertiary-fixed-dim mb-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-[#E8B978] mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-2xl">badge</span>
               </div>
-              <h3 className="font-headline-sm text-base font-bold text-surface-container-lowest mb-2">
+              <h3 className="font-headline-sm text-lg font-bold text-surface-container-lowest mb-2.5">
                 Identity &amp; Profile Guidelines
               </h3>
-              <p className="font-body-sm text-body-sm text-outline-variant leading-relaxed">
+              <p className="font-body-sm text-xs text-outline-variant leading-relaxed">
                 Community mentors and room applicants submit profile credentials and professional background before joining local circles (Prototype Design).
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/10 text-xs text-tertiary-fixed-dim font-semibold">
-              Community Review Standards
+            <div className="mt-6 pt-3.5 border-t border-white/10 text-xs text-[#E8B978] font-bold flex items-center justify-between">
+              <span>Review Standards</span>
+              <span className="material-symbols-outlined text-sm">shield</span>
             </div>
           </div>
 
           {/* Pillar 2 */}
-          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+          <div className="p-7 rounded-3xl bg-white/[0.05] backdrop-blur-md border border-white/10 hover:border-[#D6E8CF]/40 hover:bg-white/[0.08] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-tertiary-fixed-dim mb-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-[#E8B978] mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-2xl">visibility_off</span>
               </div>
-              <h3 className="font-headline-sm text-base font-bold text-surface-container-lowest mb-2">
+              <h3 className="font-headline-sm text-lg font-bold text-surface-container-lowest mb-2.5">
                 Privacy First Masking
               </h3>
-              <p className="font-body-sm text-body-sm text-outline-variant leading-relaxed">
+              <p className="font-body-sm text-xs text-outline-variant leading-relaxed">
                 Phone numbers, email addresses, and personal handles stay protected. Both sides must explicitly accept a connection request to chat.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/10 text-xs text-tertiary-fixed-dim font-semibold">
-              Mutual Consent Gateways
+            <div className="mt-6 pt-3.5 border-t border-white/10 text-xs text-[#E8B978] font-bold flex items-center justify-between">
+              <span>Consent Gateways</span>
+              <span className="material-symbols-outlined text-sm">lock</span>
             </div>
           </div>
 
           {/* Pillar 3 */}
-          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+          <div className="p-7 rounded-3xl bg-white/[0.05] backdrop-blur-md border border-white/10 hover:border-[#D6E8CF]/40 hover:bg-white/[0.08] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-tertiary-fixed-dim mb-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-[#E8B978] mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-2xl">timer</span>
               </div>
-              <h3 className="font-headline-sm text-base font-bold text-surface-container-lowest mb-2">
+              <h3 className="font-headline-sm text-lg font-bold text-surface-container-lowest mb-2.5">
                 Moderation Protocol
               </h3>
-              <p className="font-body-sm text-body-sm text-outline-variant leading-relaxed">
+              <p className="font-body-sm text-xs text-outline-variant leading-relaxed">
                 Community leads review reports regarding spam, misleading listings, or unprofessional conduct following structured safety procedures.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/10 text-xs text-tertiary-fixed-dim font-semibold">
-              Structured Redressal Protocol
+            <div className="mt-6 pt-3.5 border-t border-white/10 text-xs text-[#E8B978] font-bold flex items-center justify-between">
+              <span>Redressal System</span>
+              <span className="material-symbols-outlined text-sm">verified_user</span>
             </div>
           </div>
 
           {/* Pillar 4 */}
-          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+          <div className="p-7 rounded-3xl bg-white/[0.05] backdrop-blur-md border border-white/10 hover:border-[#D6E8CF]/40 hover:bg-white/[0.08] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-tertiary-fixed-dim mb-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-[#E8B978] mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-2xl">storefront</span>
               </div>
-              <h3 className="font-headline-sm text-base font-bold text-surface-container-lowest mb-2">
-                Public Meetup Suggestions
+              <h3 className="font-headline-sm text-lg font-bold text-surface-container-lowest mb-2.5">
+                Public Meetup Spaces
               </h3>
-              <p className="font-body-sm text-body-sm text-outline-variant leading-relaxed">
+              <p className="font-body-sm text-xs text-outline-variant leading-relaxed">
                 Recommended popular, well-lit public cafes in each neighborhood to facilitate comfortable first encounters with potential flatmates.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/10 text-xs text-tertiary-fixed-dim font-semibold">
-              Partnered Public Spaces
+            <div className="mt-6 pt-3.5 border-t border-white/10 text-xs text-[#E8B978] font-bold flex items-center justify-between">
+              <span>Partnered Cafes</span>
+              <span className="material-symbols-outlined text-sm">local_cafe</span>
             </div>
           </div>
         </div>

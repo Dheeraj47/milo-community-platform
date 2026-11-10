@@ -8,11 +8,12 @@ interface FinalCTAProps {
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onJoinClick, onExploreCitiesClick }) => {
   return (
     <section className="w-full py-20 md:py-28 bg-[#102B27] text-on-primary relative overflow-hidden" id="final-cta">
-      {/* Ambient circle background */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] rounded-full bg-white/5 blur-3xl pointer-events-none" />
+      {/* Ambient glowing radial backgrounds */}
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[45rem] h-[45rem] rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 right-1/4 w-[35rem] h-[35rem] rounded-full bg-[#E8B978]/10 blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-margin text-center relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-tertiary-fixed-dim font-label-caps text-label-caps tracking-widest uppercase mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-tertiary-fixed-dim font-label-caps text-label-caps tracking-widest uppercase mb-6 border border-white/10 shadow-xs">
           <span className="material-symbols-outlined text-xs">diversity_3</span>
           <span>COMMUNITY-POWERED SETTLEMENT</span>
         </div>
@@ -25,41 +26,60 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onJoinClick, onExploreCities
           Don’t spend your first weeks lost in unknown neighborhoods. Connect with people from your hometown who already found the best flats, authentic food, and warm friendships.
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
           <button
             type="button"
             onClick={onJoinClick}
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#E8B978] hover:bg-[#dca961] text-[#102B27] font-label-md text-label-md font-bold transition-all shadow-lg hover:scale-105 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#E8B978] to-[#f0c58a] hover:from-[#dca961] hover:to-[#e4b574] text-[#102B27] font-label-md text-sm font-extrabold transition-all shadow-[0_8px_28px_rgba(232,185,120,0.35)] hover:scale-105 cursor-pointer shimmer-btn"
           >
-            <span>Join MILO</span>
+            <span>Join MILO Free</span>
             <span className="material-symbols-outlined text-base">arrow_forward</span>
           </button>
           <button
             type="button"
             onClick={onExploreCitiesClick}
-            className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-transparent hover:bg-white/10 text-surface-container-lowest font-label-md text-label-md transition-all border border-white/20 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/5 hover:bg-white/10 text-surface-container-lowest font-label-md text-sm font-semibold transition-all border border-white/20 cursor-pointer backdrop-blur-sm"
           >
             <span className="material-symbols-outlined text-base">explore</span>
             <span>Explore Cities</span>
           </button>
         </div>
 
-        {/* Trust Badges Row (Screenshot 6 exact layout) */}
+        {/* Member Trust Pile */}
+        <div className="flex items-center justify-center gap-3 mb-10">
+          <div className="flex -space-x-2">
+            <div className="w-8 h-8 rounded-full bg-secondary-container text-[#102B27] flex items-center justify-center font-bold text-xs ring-2 ring-[#102B27]">
+              KA
+            </div>
+            <div className="w-8 h-8 rounded-full bg-[#E8B978] text-[#102B27] flex items-center justify-center font-bold text-xs ring-2 ring-[#102B27]">
+              RJ
+            </div>
+            <div className="w-8 h-8 rounded-full bg-white text-[#102B27] flex items-center justify-center font-bold text-xs ring-2 ring-[#102B27]">
+              MH
+            </div>
+          </div>
+          <span className="text-xs text-outline-variant font-medium">
+            Over 14,200+ newcomers matched this year (Demonstration Metric)
+          </span>
+        </div>
+
+        {/* Trust Badges Row */}
         <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-outline-variant font-medium pt-8 border-t border-white/10">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-tertiary-fixed-dim text-base">
+            <span className="material-symbols-outlined text-[#E8B978] text-base">
               check_circle
             </span>
             <span>100% Free For Newcomers</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-tertiary-fixed-dim text-base">
+            <span className="material-symbols-outlined text-[#E8B978] text-base">
               verified_user
             </span>
             <span>Community Guidelines &amp; Peer Checks</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-tertiary-fixed-dim text-base">
+            <span className="material-symbols-outlined text-[#E8B978] text-base">
               real_estate_agent
             </span>
             <span>Zero Brokerage Philosophy</span>

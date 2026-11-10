@@ -39,44 +39,53 @@ export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) =
           </div>
         </div>
 
-        {/* 3 Housing Cards */}
+        {/* 3 Housing Cards (Enhanced Airbnb-Tier Modern Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {ACCOMMODATIONS_DATA.map((listing) => (
             <div
               key={listing.id}
-              className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+              className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-outline-variant/30 hover:border-primary-container/20 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                <div className="relative h-52 w-full overflow-hidden bg-surface-container">
+                <div className="relative h-56 w-full overflow-hidden bg-surface-container">
                   <img
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                     alt={listing.title}
                     src={listing.image}
                   />
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary-container font-label-caps text-xs font-bold">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md text-primary-container font-label-caps text-[11px] font-bold shadow-xs">
                     {listing.tag}
                   </span>
-                  <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-xs font-bold">
+                  <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-secondary-container/90 backdrop-blur-md text-on-secondary-fixed font-label-caps text-[11px] font-bold border border-secondary/30">
                     {listing.verifiedBadge}
                   </span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium">
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-sm text-[#E8B978]">location_on</span>
+                      <span>{listing.distanceNote}</span>
+                    </span>
+                  </div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-baseline justify-between mb-2">
-                    <span className="font-headline-md text-headline-md text-primary-container">
+                    <span className="font-headline-md text-xl font-extrabold text-primary-container">
                       ₹{listing.rentMonthly.toLocaleString()}
                       <span className="text-xs text-on-surface-variant font-normal"> / month</span>
                     </span>
-                    <span className="font-label-sm text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">
+                    <span className="font-label-sm text-xs text-emerald-800 bg-emerald-100/70 px-2.5 py-0.5 rounded-full font-bold">
                       {listing.depositNote}
                     </span>
                   </div>
-                  <h3 className="font-headline-sm text-base font-bold text-on-surface mb-1">
+                  <h3 className="font-headline-sm text-base font-bold text-on-surface mb-2 group-hover:text-secondary transition-colors">
                     {listing.title}
                   </h3>
-                  <p className="text-xs text-on-surface-variant mb-4">{listing.distanceNote}</p>
-                  <div className="flex flex-wrap gap-2 text-xs text-on-surface-variant mb-4">
+                  <div className="flex flex-wrap gap-1.5 text-xs text-on-surface-variant mb-4">
                     {listing.features.map((feat) => (
-                      <span key={feat} className="px-2.5 py-1 rounded-lg bg-surface-container-low">
+                      <span
+                        key={feat}
+                        className="px-2.5 py-1 rounded-lg bg-surface-container-low text-[11px] font-medium border border-outline-variant/20"
+                      >
                         {feat}
                       </span>
                     ))}
@@ -87,9 +96,9 @@ export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) =
                 <button
                   type="button"
                   onClick={() => onSelectListing(listing)}
-                  className="w-full py-2.5 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container font-label-md text-xs font-semibold transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                  className="w-full py-3 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container font-label-md text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-outline-variant/30 hover:border-transparent group-hover:shadow-md"
                 >
-                  <span>View Flat Details &amp; Connect</span>
+                  <span>View Details &amp; Connect (Demo)</span>
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </button>
               </div>

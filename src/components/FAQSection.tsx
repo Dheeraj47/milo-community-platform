@@ -25,30 +25,36 @@ export const FAQSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3.5">
           {FAQ_DATA.map((faq) => {
             const isOpen = openIds.includes(faq.id);
             return (
               <div
                 key={faq.id}
-                className="bg-surface-container-lowest p-6 rounded-2xl shadow-xs transition-all"
+                className={`bg-surface-container-lowest p-6 rounded-2xl transition-all duration-300 border ${
+                  isOpen
+                    ? 'border-secondary shadow-md'
+                    : 'border-outline-variant/30 hover:border-outline-variant hover:shadow-xs'
+                }`}
               >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(faq.id)}
-                  className="w-full flex items-center justify-between cursor-pointer font-headline-sm text-base text-primary-container font-bold text-left"
+                  className="w-full flex items-center justify-between cursor-pointer font-headline-sm text-base text-primary-container font-bold text-left gap-4"
                 >
                   <span>{faq.question}</span>
                   <span
-                    className={`material-symbols-outlined text-secondary transition-transform duration-200 ${
-                      isOpen ? 'rotate-180' : ''
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isOpen
+                        ? 'bg-primary-container text-on-primary rotate-180'
+                        : 'bg-surface-container text-primary-container'
                     }`}
                   >
-                    expand_more
+                    <span className="material-symbols-outlined text-lg">expand_more</span>
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="pt-4 text-on-surface-variant font-body-md text-body-md leading-relaxed border-t border-surface-container mt-3 animate-fade-in">
+                  <div className="pt-4 text-on-surface-variant font-body-md text-sm leading-relaxed border-t border-surface-container mt-4 animate-fade-in">
                     {faq.answer}
                   </div>
                 )}

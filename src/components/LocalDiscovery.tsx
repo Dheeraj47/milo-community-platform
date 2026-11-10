@@ -34,21 +34,23 @@ export const LocalDiscovery: React.FC<LocalDiscoveryProps> = ({ onSelectService 
             <div
               key={service.id}
               onClick={() => onSelectService(service)}
-              className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex flex-col justify-between hover:shadow-md transition-all cursor-pointer group"
+              className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-xl hover:border-primary-container/20 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group"
             >
               <div>
                 <div
-                  className={`w-12 h-12 rounded-2xl ${service.iconBgClass} flex items-center justify-center mb-4 transition-transform group-hover:scale-105`}
+                  className={`w-14 h-14 rounded-2xl ${service.iconBgClass} flex items-center justify-center mb-4 transition-transform group-hover:scale-110 shadow-xs`}
                 >
                   <span className="material-symbols-outlined text-2xl">{service.icon}</span>
                 </div>
-                <div className="flex items-center gap-1.5 mb-1">
-                  <span className="text-xs font-bold text-amber-600">★ {service.rating}</span>
-                  <span className="text-xs text-on-surface-variant">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <span className="text-xs font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/50">
+                    ★ {service.rating}
+                  </span>
+                  <span className="text-xs text-on-surface-variant font-medium">
                     ({service.reviewCountNote})
                   </span>
                 </div>
-                <h3 className="font-headline-sm text-base font-bold text-primary-container mb-1">
+                <h3 className="font-headline-sm text-base font-bold text-primary-container mb-1 group-hover:text-secondary transition-colors">
                   {service.name}
                 </h3>
                 <p className="text-xs text-on-surface-variant mb-4 leading-relaxed">
@@ -56,10 +58,10 @@ export const LocalDiscovery: React.FC<LocalDiscoveryProps> = ({ onSelectService 
                 </p>
               </div>
               <div className="pt-4 border-t border-surface-container flex items-center justify-between">
-                <span className="text-xs font-semibold text-primary-container">
+                <span className="text-xs font-bold text-primary-container">
                   {service.priceNote}
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed text-[11px] font-bold">
+                <span className="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-[10px] font-bold tracking-wide uppercase">
                   {service.badge}
                 </span>
               </div>

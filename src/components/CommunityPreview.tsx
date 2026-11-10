@@ -41,53 +41,60 @@ export const CommunityPreview: React.FC<CommunityPreviewProps> = ({
           </div>
         </div>
 
-        {/* 3 Profile Cards (Matching Stitch design) */}
+        {/* 3 Profile Cards (Enhanced Membership Passcard Style) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {COMMUNITY_MEMBERS.map((mentor) => (
             <div
               key={mentor.id}
-              className="bg-surface-container-lowest rounded-3xl p-6 shadow-sm flex flex-col justify-between hover:shadow-lg transition-all group"
+              className="bg-surface-container-lowest rounded-3xl p-6 sm:p-7 shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-2xl hover:border-primary-container/25 hover:-translate-y-1.5 transition-all duration-300 group"
             >
               <div>
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 bg-surface-variant">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 bg-surface-variant ring-2 ring-primary-container/10 group-hover:ring-secondary transition-all">
                     <img
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                       alt={mentor.name}
                       src={mentor.avatar}
                     />
-                    <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-600 ring-2 ring-surface-container-lowest flex items-center justify-center text-white text-[9px]">
+                    <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-600 ring-2 ring-surface-container-lowest flex items-center justify-center text-white text-[9px] font-bold">
                       ✓
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-headline-sm text-headline-sm text-primary-container">
-                      {mentor.name}
-                    </h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-headline-sm text-base font-extrabold text-primary-container truncate">
+                        {mentor.name}
+                      </h3>
+                      <span className="inline-flex items-center text-[11px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.2 rounded-full border border-amber-200/50">
+                        ★ 4.9
+                      </span>
+                    </div>
                     <p className="font-body-sm text-xs text-on-surface-variant truncate">
                       {mentor.role} · {mentor.companyOrField}
                     </p>
                     <div className="mt-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-tertiary-fixed-dim/30 text-tertiary-container font-label-sm text-xs font-semibold">
-                        {mentor.hometown} → {mentor.currentCity} ({mentor.neighborhood})
+                      <span className="inline-block px-3 py-0.5 rounded-full bg-tertiary-fixed-dim/30 text-tertiary-container font-label-sm text-[11px] font-bold">
+                        {mentor.hometown} → {mentor.currentCity}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <p className="font-body-sm text-body-sm text-on-surface-variant italic mb-6 leading-relaxed">
-                  “{mentor.bio}”
-                </p>
+                <div className="p-3 rounded-2xl bg-surface-container-low/70 mb-5 border border-outline-variant/20">
+                  <p className="font-body-sm text-xs text-on-surface-variant italic leading-relaxed">
+                    “{mentor.bio}”
+                  </p>
+                </div>
 
                 <div className="mb-6">
-                  <p className="font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase font-bold mb-2.5">
+                  <p className="font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase font-bold mb-2">
                     HAPPY TO HELP NEWCOMERS WITH:
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {mentor.offeringHelpWith.map((help) => (
                       <span
                         key={help}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/70 text-on-secondary-fixed text-xs font-medium"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/70 text-on-secondary-fixed text-[11px] font-medium"
                       >
                         ✓ {help}
                       </span>
@@ -95,31 +102,31 @@ export const CommunityPreview: React.FC<CommunityPreviewProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant mb-6">
+                <div className="pt-3.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant mb-6">
                   <span>
                     <strong>Languages:</strong> {mentor.languages.join(', ')}
                   </span>
-                  <span className="font-semibold text-primary-container">
+                  <span className="font-semibold text-primary-container text-[11px] bg-surface-container px-2 py-0.5 rounded-full">
                     Settled {mentor.monthsSettled} mos ago
                   </span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2.5">
                 <button
                   type="button"
                   onClick={() => onConnectClick(mentor)}
-                  className="py-2.5 px-3 rounded-full bg-primary-container hover:bg-[#203c37] text-on-primary font-label-sm text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="py-2.5 px-3 rounded-full bg-primary-container hover:bg-[#183F39] text-on-primary font-label-sm text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer shimmer-btn"
                 >
-                  <span className="material-symbols-outlined text-sm">chat</span>
-                  <span>Say Hi / Connect</span>
+                  <span className="material-symbols-outlined text-sm text-tertiary-fixed-dim">chat</span>
+                  <span>Say Hi 👋</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => onViewGuide(mentor)}
-                  className="py-2.5 px-3 rounded-full bg-surface-container hover:bg-surface-container-high text-primary-container font-label-sm text-xs transition-colors cursor-pointer"
+                  className="py-2.5 px-3 rounded-full bg-surface-container hover:bg-surface-container-high text-primary-container font-label-sm text-xs font-semibold transition-colors cursor-pointer border border-outline-variant/30"
                 >
-                  Guide Profile
+                  Settlement Guide
                 </button>
               </div>
             </div>

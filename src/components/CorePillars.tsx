@@ -49,7 +49,7 @@ export const CorePillars: React.FC<CorePillarsProps> = ({ onJoinCircle }) => {
           </p>
         </div>
 
-        {/* Tab Buttons Row (Matching Stitch pill design) */}
+        {/* Tab Buttons Row (Matching Stitch pill design with refined hover) */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8">
           {FOUR_PILLARS.map((pillar) => {
             const isActive = activePillarId === pillar.id;
@@ -60,17 +60,17 @@ export const CorePillars: React.FC<CorePillarsProps> = ({ onJoinCircle }) => {
                 key={pillar.id}
                 type="button"
                 onClick={() => setActivePillarId(pillar.id)}
-                className={`p-4 rounded-2xl flex items-center gap-3 text-left transition-all ${
+                className={`p-4 rounded-2xl flex items-center gap-3 text-left transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-primary-container text-on-primary shadow-sm'
-                    : 'bg-surface-container-lowest hover:bg-surface-container-high text-on-surface'
+                    ? 'bg-primary-container text-on-primary shadow-lg scale-[1.02]'
+                    : 'bg-surface-container-lowest hover:bg-surface-container text-on-surface border border-outline-variant/30 hover:border-outline-variant'
                 }`}
               >
                 <span
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-transform ${
                     isActive
-                      ? 'bg-surface-container-lowest/15 text-on-primary'
-                      : 'bg-surface-container-low text-primary-container'
+                      ? 'bg-surface-container-lowest/15 text-[#E8B978]'
+                      : 'bg-surface-container text-primary-container'
                   }`}
                 >
                   <span className="material-symbols-outlined text-xl">{iconName}</span>
@@ -79,7 +79,7 @@ export const CorePillars: React.FC<CorePillarsProps> = ({ onJoinCircle }) => {
                   <p className="font-headline-sm text-sm font-bold truncate">{pillar.title}</p>
                   <p
                     className={`font-label-sm text-xs ${
-                      isActive ? 'opacity-75' : 'text-on-surface-variant'
+                      isActive ? 'text-[#D6E8CF]' : 'text-on-surface-variant'
                     }`}
                   >
                     {pillar.metric} Active
@@ -91,7 +91,7 @@ export const CorePillars: React.FC<CorePillarsProps> = ({ onJoinCircle }) => {
         </div>
 
         {/* Active Tab Content Container */}
-        <div className="bg-surface-container-lowest p-6 sm:p-10 rounded-3xl shadow-sm">
+        <div className="bg-surface-container-lowest p-6 sm:p-10 rounded-3xl shadow-xl border border-outline-variant/25">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Content */}
             <div className="lg:col-span-6 flex flex-col gap-4">
