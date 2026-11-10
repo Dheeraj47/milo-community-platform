@@ -323,7 +323,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                   {[
                     { id: 'Hometown Peers', label: `People from ${hometown}`, sub: 'Language & cultural diaspora circles' },
-                    { id: 'Authentic Tiffin', label: 'Home-style Regional Meals', sub: 'Verified tiffins, mess & groceries' },
+                    { id: 'Authentic Tiffin', label: 'Home-style Regional Meals', sub: 'Sample tiffins, mess & groceries' },
                     { id: 'Verified Flatmate', label: 'Flatmate / PG Compatibility', sub: 'Zero-brokerage, lifestyle match' },
                     { id: 'Weekend Hangouts', label: 'Sports & Social Clubs', sub: 'Badminton, weekend hikes, chai walks' },
                   ].map((item) => {
@@ -413,7 +413,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     340+ {hometown} natives live in {targetCity}
                   </h4>
                   <p style={{ fontSize: '0.8rem', color: '#26332F', lineHeight: 1.4 }}>
-                    We found 18 verified community groups, 24 regional tiffin partners, and 5 peer mentors ready to answer questions.
+                    We found 18 sample community groups, 24 regional tiffin partners, and 5 peer mentors ready to answer questions.
                   </p>
                 </div>
 

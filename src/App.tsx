@@ -2,24 +2,26 @@ import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
+import { InteractiveMatcher } from './components/InteractiveMatcher';
 import { CorePillars } from './components/CorePillars';
-import { CityDiscovery } from './components/CityDiscovery';
 import { CommunityPreview } from './components/CommunityPreview';
+import { VettedLiving } from './components/VettedLiving';
+import { LocalDiscovery } from './components/LocalDiscovery';
+import { TrustSafety } from './components/TrustSafety';
+import { CityDiscovery } from './components/CityDiscovery';
+import { FAQSection } from './components/FAQSection';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { AuthModal } from './components/AuthModal';
 import { Toast } from './components/Toast';
 import type { ToastMessage } from './components/Toast';
-import type { CommunityMember } from './types';
+import type { CommunityMember, AccommodationListing, LocalService } from './types';
 
 export function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<'join' | 'login'>('join');
+  const [selectedCity, setSelectedCity] = useState<string>('pune');
   const [toast, setToast] = useState<ToastMessage | null>(null);
-
-  // Cross-component filter coordination
-  const [previewHometown, setPreviewHometown] = useState<string>('Jaipur');
-  const [previewCity, setPreviewCity] = useState<string>('Pune');
 
   const showToast = (title: string, message: string, type: 'success' | 'info' = 'success') => {
     setToast({
@@ -35,124 +37,134 @@ export function App() {
     setAuthModalOpen(true);
   };
 
-  const handleFindCommunity = (hometown?: string, targetCity?: string) => {
-    if (hometown) setPreviewHometown(hometown);
-    if (targetCity) setPreviewCity(targetCity);
-
-    const el = document.getElementById('community-preview');
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleFindCommunity = () => {
+    scrollToSection('interactive-matcher');
   };
 
   const handleExploreCities = () => {
-    const el = document.getElementById('explore-cities');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleSelectCityForPreview = (cityName: string) => {
-    setPreviewCity(cityName);
-    const el = document.getElementById('community-preview');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-    showToast(
-      `${cityName} Community Filtered`,
-      `Showing verified newcomers, mentors and tiffin services in ${cityName}.`,
-      'info'
-    );
+    scrollToSection('destinations');
   };
 
   const handleConnect = (member: CommunityMember) => {
     showToast(
       `Intro Request Sent to ${member.name}!`,
-      `Frontend Demo: In production, ${member.name} will receive a message to help you settle into ${member.neighborhood}, ${member.currentCity}.`,
+      `Frontend Demo: In production, ${member.name} will be notified to guide you in ${member.neighborhood}, ${member.currentCity}.`,
       'success'
     );
   };
 
-  const handleSelectPillarAction = (pillarId: string) => {
-    if (pillarId === 'community') {
-      handleFindCommunity('Jaipur', 'Pune');
-    } else if (pillarId === 'living') {
-      showToast(
-        'Zero-Brokerage Stays Filtered',
-        'Viewing roommate pairings and PGs matched by diet and lifestyle in Pune & Bengaluru.',
-        'info'
-      );
-      handleFindCommunity();
-    } else if (pillarId === 'local-discovery') {
-      showToast(
-        'Authentic Tiffin Radar',
-        'Viewing verified home-cooked tiffins delivering to Baner, Hinjewadi, and Viman Nagar.',
-        'info'
-      );
-      handleFindCommunity();
-    } else {
-      showToast(
-        'Weekend Meetups & Chai Clubs',
-        'Showing upcoming badminton, morning runs, and coffee walks for newcomers.',
-        'info'
-      );
-      handleFindCommunity();
-    }
-  };
-
-  const handleSubscribe = (email: string) => {
+  const handleViewGuide = (member: CommunityMember) => {
     showToast(
-      'Relocation Guide Sent!',
-      `We've sent our comprehensive Pune & Bengaluru newcomer handbook to ${email}.`,
+      `${member.name}’s Settlement Guide`,
+      `Viewing neighborhood recommendations for ${member.neighborhood}, ${member.currentCity} (Demo).`,
+      'info'
+    );
+  };
+
+  const handleJoinCircle = (circleName: string) => {
+    showToast(
+      `Joined "${circleName}"!`,
+      'Frontend Demo: Welcome to the circle! In production, you will receive an invitation to the community channel.',
       'success'
     );
+  };
+
+  const handleSelectListing = (listing: AccommodationListing) => {
+    showToast(
+      `Listing Selected: ${listing.title}`,
+      `Rent: ₹${listing.rentMonthly.toLocaleString()}/mo · ${listing.depositNote}. Demo connection initiated with tenant.`,
+      'info'
+    );
+  };
+
+  const handleSelectService = (service: LocalService) => {
+    showToast(
+      `Service: ${service.name}`,
+      `${service.category} · ${service.priceNote}. Demo inquiry sent to community service provider.`,
+      'info'
+    );
+  };
+
+  const handleSelectCityForPreview = (cityName: string) => {
+    const cityKey = cityName.toLowerCase();
+    if (['pune', 'bengaluru', 'mumbai', 'hyderabad'].includes(cityKey)) {
+      setSelectedCity(cityKey);
+    }
+    showToast(
+      `${cityName} Settlement Hub`,
+      `Activated ${cityName} settlement horizon with community circles, stays, and mentors.`,
+      'info'
+    );
+    scrollToSection('mentor-discovery');
+  };
+
+  const handleUnlockPass = (message: string) => {
+    showToast('Settler Pass Generated', message, 'success');
+    handleOpenAuth('join');
   };
 
   return (
-    <div className="app-container">
-      {/* 1. Navigation Bar */}
+    <div className="w-full min-h-screen bg-surface font-body-md text-on-surface antialiased flex flex-col">
+      {/* 1. Header / Navbar */}
       <Navbar onOpenAuth={handleOpenAuth} />
 
-      <main>
+      <main className="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]">
         {/* 2. Hero Section */}
         <Hero
+          currentCity={selectedCity}
+          onCityChange={setSelectedCity}
           onFindCommunityClick={handleFindCommunity}
           onExploreCitiesClick={handleExploreCities}
-          onOpenAuth={handleOpenAuth}
+          onOpenMentorModal={() => handleOpenAuth('login')}
         />
 
-        {/* 3. How MILO Works */}
-        <HowItWorks onGetStartedClick={() => handleOpenAuth('join')} />
+        {/* 3. The Settler’s Blueprint (How It Works) */}
+        <HowItWorks />
 
-        {/* 4. Four Core Pillars */}
-        <CorePillars onSelectPillarAction={handleSelectPillarAction} />
+        {/* 4. Interactive Onboarding Matcher Widget */}
+        <InteractiveMatcher onUnlockPass={handleUnlockPass} />
 
-        {/* 5. City Discovery */}
-        <CityDiscovery
-          onSelectCityForPreview={handleSelectCityForPreview}
-        />
+        {/* 5. The Four Pillars */}
+        <CorePillars onJoinCircle={handleJoinCircle} />
 
-        {/* 6. Community Preview (Interactive Discovery) */}
+        {/* 6. Community Discovery: Peer Mentors */}
         <CommunityPreview
-          selectedHometown={previewHometown}
-          onHometownChange={setPreviewHometown}
-          selectedCity={previewCity}
-          onCityChange={setPreviewCity}
           onConnectClick={handleConnect}
-          onOpenAuth={handleOpenAuth}
+          onViewGuide={handleViewGuide}
         />
 
-        {/* 7. Final CTA */}
+        {/* 7. Living: Vetted Accommodations & Flatmates */}
+        <VettedLiving onSelectListing={handleSelectListing} />
+
+        {/* 8. Local Discovery: Essential Daily Services */}
+        <LocalDiscovery onSelectService={handleSelectService} />
+
+        {/* 9. Safety & Integrity (Trust Framework) */}
+        <TrustSafety />
+
+        {/* 10. Explore Destination Cities */}
+        <CityDiscovery onSelectCityForPreview={handleSelectCityForPreview} />
+
+        {/* 11. Frequently Asked Questions (FAQ) */}
+        <FAQSection />
+
+        {/* 12. Final Immersive CTA Banner */}
         <FinalCTA
           onJoinClick={() => handleOpenAuth('join')}
           onExploreCitiesClick={handleExploreCities}
         />
       </main>
 
-      {/* 8. Footer */}
+      {/* 13. Footer */}
       <Footer
         onCityClick={handleSelectCityForPreview}
-        onSubscribe={handleSubscribe}
         onOpenAuth={handleOpenAuth}
       />
 

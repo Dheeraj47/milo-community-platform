@@ -1,387 +1,169 @@
 import React, { useState } from 'react';
 import { FOUR_PILLARS } from '../data/mockData';
-import { Users, Home, UtensilsCrossed, Sparkles, Check, ArrowRight, Quote } from 'lucide-react';
 
 interface CorePillarsProps {
-  onSelectPillarAction: (pillarId: string) => void;
+  onJoinCircle: (circleName: string) => void;
 }
 
-export const CorePillars: React.FC<CorePillarsProps> = ({ onSelectPillarAction }) => {
-  const [activeTab, setActiveTab] = useState<string>('community');
+export const CorePillars: React.FC<CorePillarsProps> = ({ onJoinCircle }) => {
+  const [activePillarId, setActivePillarId] = useState('pillar-community');
+
+  const activePillar =
+    FOUR_PILLARS.find((p) => p.id === activePillarId) || FOUR_PILLARS[0];
 
   const getPillarIcon = (id: string) => {
     switch (id) {
-      case 'community':
-        return <Users size={24} color="#102B27" />;
-      case 'living':
-        return <Home size={24} color="#102B27" />;
-      case 'local-discovery':
-        return <UtensilsCrossed size={24} color="#102B27" />;
-      case 'connections':
+      case 'pillar-community':
+        return 'groups';
+      case 'pillar-living':
+        return 'home';
+      case 'pillar-discovery':
+        return 'restaurant';
+      case 'pillar-connections':
       default:
-        return <Sparkles size={24} color="#102B27" />;
+        return 'handshake';
     }
   };
 
-  const selectedPillar = FOUR_PILLARS.find((p) => p.id === activeTab) || FOUR_PILLARS[0];
+  const getPillarIndex = (id: string) => {
+    const idx = FOUR_PILLARS.findIndex((p) => p.id === id);
+    return idx >= 0 ? `0${idx + 1}` : '01';
+  };
 
   return (
-    <section
-      id="pillars"
-      style={{
-        padding: '6rem 0',
-        backgroundColor: '#F7F5EF',
-      }}
-    >
-      <div className="section-wrapper">
-        {/* Section Header */}
-        <div className="section-center">
-          <div className="section-badge">
-            <Sparkles size={14} color="#102B27" />
-            <span>The Four Pillars</span>
+    <section className="w-full py-16 md:py-24 bg-surface-container-low" id="four-pillars">
+      <div className="max-w-7xl mx-auto px-margin">
+        {/* Header */}
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container text-secondary mb-3">
+            <span className="material-symbols-outlined text-sm">stars</span>
+            <span className="font-label-caps text-label-caps font-bold uppercase tracking-wider">
+              THE FOUR PILLARS
+            </span>
           </div>
-          <h2 className="section-title">Everything You Need to Feel Settled</h2>
-          <p className="section-subtitle">
+          <h2 className="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary-container tracking-tight mb-4">
+            Everything You Need to Feel Settled
+          </h2>
+          <p className="font-body-lg text-body-lg text-on-surface-variant">
             Relocating goes far beyond shipping boxes. MILO is built on four core pillars engineered to restore your social safety net, housing peace, and daily comforts.
           </p>
         </div>
 
-        {/* 4 Interactive Selector Tabs */}
-        <div className="pillars-nav-tabs">
+        {/* Tab Buttons Row (Matching Stitch pill design) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8">
           {FOUR_PILLARS.map((pillar) => {
-            const isActive = activeTab === pillar.id;
+            const isActive = activePillarId === pillar.id;
+            const iconName = getPillarIcon(pillar.id);
+
             return (
               <button
                 key={pillar.id}
                 type="button"
-                onClick={() => setActiveTab(pillar.id)}
-                className="pillar-tab-btn"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                  padding: '1rem 1.25rem',
-                  borderRadius: '16px',
-                  backgroundColor: isActive ? '#102B27' : '#FFFFFF',
-                  color: isActive ? '#F7F5EF' : '#26332F',
-                  border: `1.5px solid ${isActive ? '#102B27' : '#E8E9E3'}`,
-                  boxShadow: isActive ? '0 8px 24px rgba(16, 43, 39, 0.15)' : 'none',
-                  transition: 'all 0.2s ease',
-                  textAlign: 'left',
-                }}
+                onClick={() => setActivePillarId(pillar.id)}
+                className={`p-4 rounded-2xl flex items-center gap-3 text-left transition-all ${
+                  isActive
+                    ? 'bg-primary-container text-on-primary shadow-sm'
+                    : 'bg-surface-container-lowest hover:bg-surface-container-high text-on-surface'
+                }`}
               >
-                <div
-                  style={{
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '10px',
-                    backgroundColor: isActive ? '#D6E8CF' : '#F7F5EF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}
+                <span
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                    isActive
+                      ? 'bg-surface-container-lowest/15 text-on-primary'
+                      : 'bg-surface-container-low text-primary-container'
+                  }`}
                 >
-                  {getPillarIcon(pillar.id)}
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontFamily: "'Manrope', sans-serif",
-                      fontWeight: 700,
-                      fontSize: '1rem',
-                      color: isActive ? '#FFFFFF' : '#102B27',
-                    }}
-                  >
-                    {pillar.title}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: '0.75rem',
-                      color: isActive ? '#D6E8CF' : '#536460',
-                    }}
+                  <span className="material-symbols-outlined text-xl">{iconName}</span>
+                </span>
+                <div className="min-w-0">
+                  <p className="font-headline-sm text-sm font-bold truncate">{pillar.title}</p>
+                  <p
+                    className={`font-label-sm text-xs ${
+                      isActive ? 'opacity-75' : 'text-on-surface-variant'
+                    }`}
                   >
                     {pillar.metric} Active
-                  </div>
+                  </p>
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* Active Pillar Featured Display */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: '28px',
-            border: '1.5px solid #E8E9E3',
-            boxShadow: '0 16px 40px rgba(16, 43, 39, 0.07)',
-            padding: '2.5rem',
-            marginTop: '2rem',
-          }}
-          className="pillar-featured-card"
-        >
-          <div className="pillar-detail-grid">
-            {/* Left Pillar Deep Dive */}
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                <span className="tag-pill sage">Pillar 0{FOUR_PILLARS.indexOf(selectedPillar) + 1}</span>
-                <span className="tag-pill amber">{selectedPillar.metricLabel}</span>
+        {/* Active Tab Content Container */}
+        <div className="bg-surface-container-lowest p-6 sm:p-10 rounded-3xl shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-6 flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-xs">
+                  Pillar {getPillarIndex(activePillar.id)}
+                </span>
+                <span className="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-xs">
+                  {activePillar.metricLabel}
+                </span>
               </div>
-
-              <h3
-                style={{
-                  fontFamily: "'Manrope', sans-serif",
-                  fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-                  fontWeight: 800,
-                  color: '#102B27',
-                  lineHeight: 1.2,
-                  marginBottom: '0.85rem',
-                }}
-              >
-                {selectedPillar.tagline}
+              <h3 className="font-headline-lg text-headline-lg text-primary-container">
+                {activePillar.tagline}
               </h3>
-
-              <p
-                style={{
-                  fontSize: '1.025rem',
-                  color: '#536460',
-                  lineHeight: 1.65,
-                  marginBottom: '1.75rem',
-                }}
-              >
-                {selectedPillar.description}
+              <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                {activePillar.description}
               </p>
-
-              {/* Highlights Check List */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.75rem',
-                  marginBottom: '2rem',
-                }}
-              >
-                {selectedPillar.highlights.map((highlight) => (
-                  <div
-                    key={highlight}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '0.75rem',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: '20px',
-                        height: '20px',
-                        borderRadius: '50%',
-                        backgroundColor: '#D6E8CF',
-                        color: '#102B27',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                        marginTop: '2px',
-                      }}
-                    >
-                      <Check size={13} strokeWidth={3} />
-                    </div>
-                    <span style={{ fontSize: '0.925rem', color: '#26332F', fontWeight: 500 }}>
-                      {highlight}
+              <div className="flex flex-col gap-3 pt-2">
+                {activePillar.highlights.map((highlight, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-secondary text-lg mt-0.5">
+                      check_circle
                     </span>
+                    <p className="font-body-sm text-body-sm text-on-surface leading-relaxed">
+                      {highlight}
+                    </p>
                   </div>
                 ))}
               </div>
-
-              <button
-                type="button"
-                onClick={() => onSelectPillarAction(selectedPillar.id)}
-                className="btn btn-primary"
-                style={{ padding: '0.85rem 1.85rem' }}
-              >
-                Explore {selectedPillar.title} Features <ArrowRight size={16} />
-              </button>
             </div>
 
-            {/* Right Pillar Visual Showcase: Feature Cards & Testimonial */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              {/* Feature Chips */}
-              <div
-                style={{
-                  backgroundColor: '#F7F5EF',
-                  borderRadius: '20px',
-                  padding: '1.5rem',
-                  border: '1px solid #E8E9E3',
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    color: '#102B27',
-                    letterSpacing: '0.04em',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  Core Platform Capabilities
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                  {selectedPillar.sampleFeatures.map((feat) => (
-                    <div
-                      key={feat.label}
-                      style={{
-                        backgroundColor: '#FFFFFF',
-                        borderRadius: '12px',
-                        padding: '0.85rem 1rem',
-                        border: '1px solid #E8E9E3',
-                      }}
-                    >
+            {/* Right Mini Bento Circles */}
+            <div className="lg:col-span-6 flex flex-col gap-3.5">
+              {activePillar.featuredCircles && activePillar.featuredCircles.length > 0 ? (
+                activePillar.featuredCircles.map((circle) => (
+                  <div
+                    key={circle.id}
+                    className="p-4 rounded-2xl bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
                       <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          marginBottom: '0.2rem',
-                        }}
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center font-headline-sm font-bold ${circle.initialsBgClass}`}
                       >
-                        <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#102B27' }}>
-                          {feat.label}
-                        </span>
-                        <span className="tag-pill sage" style={{ fontSize: '0.7rem' }}>
-                          {feat.tag}
-                        </span>
+                        {circle.initials}
                       </div>
-                      <p style={{ fontSize: '0.8rem', color: '#536460', margin: 0 }}>
-                        {feat.description}
-                      </p>
+                      <div>
+                        <h4 className="font-label-md text-label-md text-primary-container font-bold">
+                          {circle.name}
+                        </h4>
+                        <p className="text-xs text-on-surface-variant">
+                          {circle.membersCount} Members · {circle.locations}
+                        </p>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quote Card */}
-              <div
-                style={{
-                  backgroundColor: '#102B27',
-                  borderRadius: '20px',
-                  padding: '1.5rem',
-                  color: '#F7F5EF',
-                  border: '1px solid #26332F',
-                }}
-              >
-                <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.65rem', color: '#E8B978' }}>
-                  <Quote size={20} />
-                </div>
-                <p
-                  style={{
-                    fontSize: '0.925rem',
-                    lineHeight: 1.5,
-                    color: '#FFFFFF',
-                    fontStyle: 'italic',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  "{selectedPillar.realQuote.text}"
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#D6E8CF' }}>
-                      {selectedPillar.realQuote.author}
-                    </div>
-                    <div style={{ fontSize: '0.75rem', color: '#E8E9E3' }}>
-                      {selectedPillar.realQuote.fromTo}
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => onJoinCircle(circle.name)}
+                      className="px-3 py-1 rounded-full bg-surface-container-lowest text-xs font-semibold text-primary-container shadow-xs hover:bg-primary-container hover:text-on-primary transition-colors cursor-pointer"
+                    >
+                      Join Circle
+                    </button>
                   </div>
-                  <span className="demo-pill" style={{ color: '#E8E9E3', borderColor: '#26332F' }}>
-                    Verified Resident
-                  </span>
+                ))
+              ) : (
+                <div className="p-6 rounded-2xl bg-surface-container-low text-center text-sm text-on-surface-variant">
+                  Featured community circles for this pillar are active across Pune, Bengaluru, Mumbai and Hyderabad.
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
-
-        {/* 4 Cards Overview Grid */}
-        <div className="pillars-cards-grid">
-          {FOUR_PILLARS.map((p) => (
-            <div
-              key={p.id}
-              className="milo-card"
-              onClick={() => setActiveTab(p.id)}
-              style={{
-                padding: '1.75rem',
-                cursor: 'pointer',
-                borderColor: activeTab === p.id ? '#102B27' : '#E8E9E3',
-              }}
-            >
-              <div
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '12px',
-                  backgroundColor: '#D6E8CF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1rem',
-                }}
-              >
-                {getPillarIcon(p.id)}
-              </div>
-              <h4
-                style={{
-                  fontFamily: "'Manrope', sans-serif",
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  color: '#102B27',
-                  marginBottom: '0.4rem',
-                }}
-              >
-                {p.title}
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: '#536460', lineHeight: 1.5 }}>
-                {p.tagline}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
-
-      <style>{`
-        .pillars-nav-tabs {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1rem;
-        }
-
-        .pillar-detail-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 2.5rem;
-          align-items: center;
-        }
-
-        .pillars-cards-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
-          margin-top: 2rem;
-        }
-
-        @media (min-width: 900px) {
-          .pillars-nav-tabs {
-            grid-template-columns: repeat(4, 1fr);
-          }
-          .pillar-detail-grid {
-            grid-template-columns: 1.2fr 0.8fr;
-          }
-          .pillars-cards-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-      `}</style>
     </section>
   );
 };

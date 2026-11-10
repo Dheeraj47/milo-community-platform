@@ -1,324 +1,177 @@
-import React, { useState } from 'react';
-import { MiloLogo } from './MiloLogo';
-import { CheckCircle2 } from 'lucide-react';
+import React from 'react';
 
 interface FooterProps {
   onCityClick: (cityName: string) => void;
-  onSubscribe: (email: string) => void;
   onOpenAuth: (mode: 'join') => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  onCityClick,
-  onSubscribe,
-  onOpenAuth,
-}) => {
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail) return;
-    onSubscribe(newsletterEmail);
-    setSubscribed(true);
-    setNewsletterEmail('');
-  };
-
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
+export const Footer: React.FC<FooterProps> = ({ onCityClick, onOpenAuth }) => {
+  const handleScrollTo = (id: string) => {
+    const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <footer
-      style={{
-        backgroundColor: '#0B1D1A',
-        color: '#F7F5EF',
-        paddingTop: '5rem',
-        paddingBottom: '3rem',
-        borderTop: '1px solid #183F39',
-      }}
-    >
-      <div className="section-wrapper">
-        <div className="footer-grid">
-          {/* Brand Column */}
-          <div style={{ maxWidth: '360px' }}>
-            <MiloLogo variant="light" size="lg" showSubtitle />
-            <p
-              style={{
-                fontSize: '0.9rem',
-                color: '#D6E8CF',
-                lineHeight: 1.6,
-                marginTop: '1.25rem',
-                marginBottom: '1.5rem',
-              }}
-            >
-              MILO is a premium community-powered city settlement platform helping people moving to a new city find familiar people, trusted communities, accommodation, local services, and meaningful connections.
-            </p>
-
-            {/* Newsletter Mini Form */}
-            <div>
-              <div
-                style={{
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  color: '#E8B978',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                  marginBottom: '0.5rem',
-                }}
+    <footer className="w-full bg-[#102B27] text-on-primary py-space-xl border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-margin">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl mb-space-xl">
+          {/* Brand info */}
+          <div className="lg:col-span-2 flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-sm">
+              <svg
+                width="34"
+                height="34"
+                viewBox="0 0 44 44"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0"
               >
-                Get City Settlement Guides
-              </div>
-              {subscribed ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    backgroundColor: 'rgba(214, 232, 207, 0.15)',
-                    padding: '0.65rem 1rem',
-                    borderRadius: '10px',
-                    color: '#D6E8CF',
-                    fontSize: '0.825rem',
-                  }}
-                >
-                  <CheckCircle2 size={16} color="#E8B978" />
-                  <span>Check your inbox for our Jaipur → Pune Settler Guide!</span>
-                </div>
-              ) : (
-                <form onSubmit={handleNewsletterSubmit} style={{ display: 'flex', gap: '0.5rem' }}>
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    style={{
-                      flex: 1,
-                      padding: '0.65rem 0.85rem',
-                      borderRadius: '10px',
-                      border: '1px solid #183F39',
-                      backgroundColor: 'rgba(247, 245, 239, 0.08)',
-                      color: '#FFFFFF',
-                      fontSize: '0.85rem',
-                      fontFamily: 'inherit',
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    className="btn btn-amber"
-                    style={{
-                      padding: '0.65rem 1.15rem',
-                      borderRadius: '10px',
-                      fontSize: '0.85rem',
-                    }}
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              )}
+                <rect width="44" height="44" rx="12" fill="#183F39" />
+                <path
+                  d="M11 32V16L18 25.5L22 20L26 25.5L33 16V32"
+                  stroke="#D6E8CF"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="22" cy="13.5" r="2.8" fill="#E8B978" />
+              </svg>
+              <span className="font-headline-md text-headline-md text-surface-container-lowest tracking-tight">
+                MILO
+              </span>
+            </div>
+            <p className="font-body-md text-body-md text-outline-variant max-w-sm">
+              A community-powered relocation and settlement network for newcomers navigating unfamiliar Indian metropolises with warmth, safety, and peer support.
+            </p>
+            <div className="flex items-center gap-space-sm pt-space-xs">
+              <span className="inline-flex items-center px-space-md py-1 rounded-full bg-white/10 text-tertiary-fixed-dim font-label-caps text-label-caps">
+                100% COMMUNITY BACKED
+              </span>
+              <span className="inline-flex items-center px-space-md py-1 rounded-full bg-white/10 text-primary-fixed-dim font-label-caps text-label-caps">
+                PEER MODERATED · DEMO
+              </span>
             </div>
           </div>
 
-          {/* Column 2: Destination Cities */}
-          <div>
-            <h4
-              style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                color: '#FFFFFF',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                marginBottom: '1.25rem',
-              }}
-            >
-              Explore Cities
-            </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              {['Pune', 'Mumbai', 'Bengaluru', 'Hyderabad'].map((city) => (
-                <li key={city}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onCityClick(city);
-                      handleScroll('#explore-cities');
-                    }}
-                    style={{
-                      fontSize: '0.875rem',
-                      color: '#D6E8CF',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#E8B978')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#D6E8CF')}
-                  >
-                    {city} Settlement Circles
-                  </button>
-                </li>
-              ))}
-              <li style={{ fontSize: '0.825rem', color: '#536460' }}>
-                Delhi NCR & Chennai (Opening Soon)
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: The Four Pillars */}
-          <div>
-            <h4
-              style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                color: '#FFFFFF',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                marginBottom: '1.25rem',
-              }}
-            >
+          {/* Col 2: Four Pillars */}
+          <div className="flex flex-col gap-space-sm">
+            <span className="font-label-caps text-label-caps text-tertiary-fixed-dim tracking-wider uppercase mb-space-xs">
               Four Pillars
-            </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li>
-                <a
-                  href="#pillars"
-                  onClick={() => handleScroll('#pillars')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF' }}
-                >
-                  Hometown Community & Language
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#pillars"
-                  onClick={() => handleScroll('#pillars')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF' }}
-                >
-                  Zero-Broker PGs & Roommates
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#pillars"
-                  onClick={() => handleScroll('#pillars')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF' }}
-                >
-                  Authentic Regional Tiffins & Mess
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#pillars"
-                  onClick={() => handleScroll('#pillars')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF' }}
-                >
-                  Sports & Newcomer Activity Circles
-                </a>
-              </li>
-            </ul>
+            </span>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('four-pillars')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Neighborhood Anchors
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('four-pillars')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Language &amp; Roots Guilds
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('vetted-living')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Verified Rental Peer Circle
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('local-discovery')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Emergency SOS &amp; Support
+            </button>
           </div>
 
-          {/* Column 4: Resources & Trust */}
-          <div>
-            <h4
-              style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                color: '#FFFFFF',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                marginBottom: '1.25rem',
-              }}
+          {/* Col 3: Active City Hubs */}
+          <div className="flex flex-col gap-space-sm">
+            <span className="font-label-caps text-label-caps text-tertiary-fixed-dim tracking-wider uppercase mb-space-xs">
+              Active City Hubs
+            </span>
+            {['Pune', 'Mumbai', 'Bengaluru', 'Hyderabad'].map((city) => (
+              <button
+                key={city}
+                type="button"
+                onClick={() => {
+                  onCityClick(city);
+                  handleScrollTo('destinations');
+                }}
+                className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+              >
+                {city} Settlement Hub
+              </button>
+            ))}
+          </div>
+
+          {/* Col 4: Platform Trust */}
+          <div className="flex flex-col gap-space-sm">
+            <span className="font-label-caps text-label-caps text-tertiary-fixed-dim tracking-wider uppercase mb-space-xs">
+              Platform Trust
+            </span>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('trust-safety')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
             >
-              Resources & Trust
-            </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenAuth('join')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF', textAlign: 'left' }}
-                >
-                  Newcomer Relocation Checklist
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenAuth('join')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF', textAlign: 'left' }}
-                >
-                  Safe Neighborhood Ratings
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenAuth('join')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF', textAlign: 'left' }}
-                >
-                  Flatmate Compatibility Guide
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onOpenAuth('join')}
-                  style={{ fontSize: '0.875rem', color: '#D6E8CF', textAlign: 'left' }}
-                >
-                  Community Safety & Verification
-                </button>
-              </li>
-            </ul>
+              Safety Guidelines
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('trust-safety')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Mentor Code of Conduct
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenAuth('join')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Identity Guidelines (Demo)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('faq-section')}
+              className="text-left font-body-sm text-body-sm text-outline-variant hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Settler Grievances &amp; FAQ
+            </button>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Legal */}
-        <div
-          style={{
-            marginTop: '4rem',
-            paddingTop: '2rem',
-            borderTop: '1px solid #183F39',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1rem',
-            fontSize: '0.825rem',
-            color: '#7E908C',
-          }}
-        >
-          <div>
-            © 2026 MILO Platforms. Built with care for every newcomer discovering their people.
-          </div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Community Guidelines</span>
+        {/* Bottom bar */}
+        <div className="pt-space-lg border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-outline-variant">
+          <p>© 2026 MILO City Settlement Network. Demonstration platform for inter-city newcomers across India.</p>
+          <div className="flex items-center gap-space-lg">
+            <button
+              type="button"
+              onClick={() => handleScrollTo('trust-safety')}
+              className="hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('trust-safety')}
+              className="hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Terms of Hospitality
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollTo('trust-safety')}
+              className="hover:text-surface-container-lowest transition-colors cursor-pointer"
+            >
+              Community Guidelines
+            </button>
           </div>
         </div>
       </div>
-
-      <style>{`
-        .footer-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 3rem;
-        }
-
-        @media (min-width: 640px) {
-          .footer-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (min-width: 1040px) {
-          .footer-grid {
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-          }
-        }
-      `}</style>
     </footer>
   );
 };
