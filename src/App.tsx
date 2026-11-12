@@ -111,11 +111,11 @@ export function App() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-surface font-body-md text-on-surface antialiased flex flex-col">
+    <div className="w-full min-h-screen bg-surface font-body-md text-on-surface antialiased flex flex-col overflow-x-hidden">
       {/* 1. Header / Navbar */}
       <Navbar onOpenAuth={handleOpenAuth} />
 
-      <main className="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]">
+      <main className="w-full pt-16 sm:pt-20 bg-surface min-h-[calc(100vh-80px)] overflow-x-hidden">
         {/* 2. Hero Section */}
         <Hero
           currentCity={selectedCity}

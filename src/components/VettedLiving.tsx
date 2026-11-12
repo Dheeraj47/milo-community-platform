@@ -9,10 +9,10 @@ interface VettedLivingProps {
 export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) => {
   return (
     <section className="w-full py-16 md:py-24 bg-surface-container-low" id="vetted-living">
-      <div className="max-w-7xl mx-auto px-margin">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="font-label-caps text-label-caps text-secondary font-bold tracking-widest uppercase">
                 PEER-SHARED LIVING · DEMO
               </span>
@@ -23,16 +23,16 @@ export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) =
             <h2 className="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary-container tracking-tight">
               Fair Leases. Safe Neighborhoods.
             </h2>
-            <p className="font-body-md text-body-md text-on-surface-variant mt-2 max-w-xl">
+            <p className="font-body-md text-sm sm:text-body-md text-on-surface-variant mt-2 max-w-xl leading-relaxed">
               Demonstration accommodation previews. Direct tenant connections, zero broker fees, and lifestyle compatibility matching.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-secondary-container text-on-secondary-fixed text-xs font-semibold">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 self-start md:self-auto">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-fixed text-xs font-semibold">
               <span className="material-symbols-outlined text-xs">verified</span>
               <span>Zero Brokerage Philosophy</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container text-primary-container text-xs font-semibold">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-primary-container text-xs font-semibold">
               <span className="material-symbols-outlined text-xs">shield</span>
               <span>Community Guidelines (Demo)</span>
             </span>
@@ -54,10 +54,10 @@ export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) =
                     src={listing.image}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md text-primary-container font-label-caps text-[11px] font-bold shadow-xs">
+                  <span className="absolute top-3 left-3 px-2.5 sm:px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md text-primary-container font-label-caps text-[10px] sm:text-[11px] font-bold shadow-xs">
                     {listing.tag}
                   </span>
-                  <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-secondary-container/90 backdrop-blur-md text-on-secondary-fixed font-label-caps text-[11px] font-bold border border-secondary/30">
+                  <span className="absolute top-3 right-3 px-2 sm:px-2.5 py-1 rounded-full bg-secondary-container/90 backdrop-blur-md text-on-secondary-fixed font-label-caps text-[10px] sm:text-[11px] font-bold border border-secondary/30">
                     {listing.verifiedBadge}
                   </span>
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium">
@@ -67,8 +67,8 @@ export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) =
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-baseline justify-between mb-2">
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
                     <span className="font-headline-md text-xl font-extrabold text-primary-container">
                       ₹{listing.rentMonthly.toLocaleString()}
                       <span className="text-xs text-on-surface-variant font-normal"> / month</span>
@@ -92,7 +92,7 @@ export const VettedLiving: React.FC<VettedLivingProps> = ({ onSelectListing }) =
                   </div>
                 </div>
               </div>
-              <div className="p-6 pt-0">
+              <div className="p-4 sm:p-6 pt-0">
                 <button
                   type="button"
                   onClick={() => onSelectListing(listing)}

@@ -51,19 +51,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F7F5EF]/85 backdrop-blur-2xl border-b border-[#102B27]/10 transition-all shadow-[0_4px_20px_rgba(16,43,39,0.03)]">
-      <div className="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-lg">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F7F5EF]/90 backdrop-blur-2xl border-b border-[#102B27]/10 transition-all shadow-[0_4px_20px_rgba(16,43,39,0.03)]">
+      <div className="h-16 sm:h-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-margin flex items-center justify-between gap-2 sm:gap-space-lg">
         {/* Brand Logo & Tag */}
-        <a href="#" className="flex items-center gap-3 shrink-0 group">
+        <a href="#" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
           {/* Reliable, Crisp Geometric SVG Logo */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <svg
-              width="36"
-              height="36"
+              width="32"
+              height="32"
               viewBox="0 0 44 44"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 transition-transform group-hover:scale-105"
+              className="sm:w-9 sm:h-9 shrink-0 transition-transform group-hover:scale-105"
             >
               <rect width="44" height="44" rx="12" fill="#102B27" />
               <path
@@ -75,11 +75,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               />
               <circle cx="22" cy="13.5" r="2.8" fill="#E8B978" />
             </svg>
-            <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-[#F7F5EF]" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-[#F7F5EF]" />
           </div>
           <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="font-headline-sm text-lg font-extrabold text-primary-container tracking-tight">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="font-headline-sm text-base sm:text-lg font-extrabold text-primary-container tracking-tight">
                 MILO
               </span>
               <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-fixed font-label-caps text-[10px] tracking-wider uppercase font-bold">
@@ -87,14 +87,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
                 Live in 4 Hubs
               </span>
             </div>
-            <span className="hidden lg:inline text-[10px] text-on-surface-variant font-medium tracking-wide">
+            <span className="hidden xl:inline text-[10px] text-on-surface-variant font-medium tracking-wide">
               Community-Powered City Settlement
             </span>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 px-1.5 py-1 rounded-full bg-surface-container/70 border border-outline-variant/30 backdrop-blur-md">
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-1.5 py-1 rounded-full bg-surface-container/70 border border-outline-variant/30 backdrop-blur-md">
           {navItems.map((item) => {
             const isActive = activePath === item.path;
             return (
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
                 key={item.path}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href, item.path)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 xl:px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-primary-container text-on-primary shadow-xs'
                     : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60'
@@ -114,8 +114,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
           })}
         </nav>
 
-        {/* Desktop Actions */}
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Action Buttons: Responsive for 320px - 430px+ */}
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <button
             type="button"
             onClick={() => onOpenAuth('login')}
@@ -123,78 +123,108 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
           >
             Log In
           </button>
+
+          {/* Compact on narrow mobile, full on >= 380px */}
           <button
             type="button"
             onClick={() => onOpenAuth('join')}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-container hover:bg-[#183F39] text-on-primary font-label-md text-xs font-bold transition-all shadow-[0_4px_14px_rgba(16,43,39,0.18)] hover:scale-[1.02] cursor-pointer shimmer-btn"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full bg-primary-container hover:bg-[#183F39] text-on-primary font-label-md text-[11px] sm:text-xs font-bold transition-all shadow-xs hover:scale-[1.02] cursor-pointer shimmer-btn"
           >
-            <span>Get Started</span>
-            <span className="material-symbols-outlined text-sm text-tertiary-fixed-dim">
+            <span className="hidden min-[360px]:inline">Get Started</span>
+            <span className="min-[360px]:hidden">Join</span>
+            <span className="material-symbols-outlined text-xs sm:text-sm text-tertiary-fixed-dim">
               arrow_forward
             </span>
           </button>
+
+          {/* Avatar Profile Trigger */}
           <div
-            className="flex items-center pl-2 border-l border-outline-variant/40 cursor-pointer"
+            className="flex items-center pl-1 sm:pl-2 border-l border-outline-variant/40 cursor-pointer"
             onClick={() => onOpenAuth('login')}
             title="Demo Member Profile"
           >
             <div className="relative">
               <img
                 alt="Profile"
-                className="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container/20 hover:ring-secondary transition-all"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-2 ring-primary-container/20 hover:ring-secondary transition-all"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRw6sq-w_5DDD-Nmf5I4wwBIQcf29dhU0izwXNFeBIzoREh1p51hFoaY1utBa2tZ4j3nAXfzTAViSZhzslOXuWBlPkcf28uKvnXic93lnQ9p0a-lYI24l_1vUhm8NDn6-UpPmbYG0Bji7kQ778GDVZOS7Voc95K8x-deGqiYlZYtHxPto4j0WnUHbUu-N4jjNyzvMtjMzkVdhDzl3If8zrPGHjh1XcuasuO5ifK0Eb"
               />
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-1 ring-white" />
+              <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 ring-1 ring-white" />
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile & Tablet Menu Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center p-2 rounded-xl bg-surface-container text-primary-container cursor-pointer"
+            className="lg:hidden flex items-center justify-center p-1.5 sm:p-2 rounded-xl bg-surface-container text-primary-container cursor-pointer"
             aria-label="Toggle menu"
           >
-            <span className="material-symbols-outlined text-xl">
+            <span className="material-symbols-outlined text-lg sm:text-xl">
               {mobileMenuOpen ? 'close' : 'menu'}
             </span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile & Tablet Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-surface-container-lowest border-b border-[#E5E2D9] px-margin py-4 flex flex-col gap-3 shadow-lg">
-          {navItems.map((item) => (
-            <a
-              key={item.path}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href, item.path)}
-              className="py-2 text-base font-semibold text-primary-container"
-            >
-              {item.label}
-            </a>
-          ))}
-          <div className="pt-2 border-t border-surface-container flex flex-col gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAuth('login');
-              }}
-              className="w-full py-2.5 rounded-full bg-surface-container text-primary-container font-semibold text-sm cursor-pointer"
-            >
-              Log In
-            </button>
+        <div className="lg:hidden bg-surface-container-lowest border-b border-[#E5E2D9] px-4 sm:px-6 py-4 flex flex-col gap-3 shadow-xl animate-fade-in max-h-[calc(100vh-64px)] overflow-y-auto">
+          {/* Member Profile Quick Card */}
+          <div
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenAuth('login');
+            }}
+            className="flex items-center gap-3 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30 cursor-pointer"
+          >
+            <img
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover ring-2 ring-primary-container/20"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRw6sq-w_5DDD-Nmf5I4wwBIQcf29dhU0izwXNFeBIzoREh1p51hFoaY1utBa2tZ4j3nAXfzTAViSZhzslOXuWBlPkcf28uKvnXic93lnQ9p0a-lYI24l_1vUhm8NDn6-UpPmbYG0Bji7kQ778GDVZOS7Voc95K8x-deGqiYlZYtHxPto4j0WnUHbUu-N4jjNyzvMtjMzkVdhDzl3If8zrPGHjh1XcuasuO5ifK0Eb"
+            />
+            <div className="flex flex-col">
+              <span className="font-headline-sm text-xs font-bold text-primary-container">
+                Demo Member Account
+              </span>
+              <span className="text-[11px] text-on-surface-variant">Tap to switch or sign in</span>
+            </div>
+          </div>
+
+          <div className="py-1 flex flex-col gap-1">
+            {navItems.map((item) => (
+              <a
+                key={item.path}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href, item.path)}
+                className="py-2.5 px-3 rounded-xl text-sm font-semibold text-primary-container hover:bg-surface-container transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="pt-3 border-t border-surface-container flex flex-col gap-2">
             <button
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenAuth('join');
               }}
-              className="w-full py-2.5 rounded-full bg-primary-container text-on-primary font-semibold text-sm cursor-pointer"
+              className="w-full py-3 rounded-full bg-primary-container text-on-primary font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md shimmer-btn"
             >
-              Get Started →
+              <span>Get Started Free</span>
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenAuth('login');
+              }}
+              className="w-full py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-primary-container font-semibold text-xs cursor-pointer border border-outline-variant/30"
+            >
+              Log In to Existing Account
             </button>
           </div>
         </div>

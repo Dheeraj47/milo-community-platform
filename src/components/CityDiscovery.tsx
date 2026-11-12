@@ -8,21 +8,21 @@ interface CityDiscoveryProps {
 export const CityDiscovery: React.FC<CityDiscoveryProps> = ({ onSelectCityForPreview }) => {
   return (
     <section className="w-full py-16 md:py-24 bg-surface" id="destinations">
-      <div className="max-w-7xl mx-auto px-margin">
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <h2 className="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary-container tracking-tight mb-3">
             Explore Destination Cities
           </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-4">
+          <p className="font-body-md text-sm sm:text-body-md text-on-surface-variant leading-relaxed mb-4">
             Whether moving for career growth, college, or a fresh start, discover the neighborhoods, regional diasporas, and sample communities waiting to welcome you.
           </p>
-          <span className="inline-block px-3 py-1 rounded-full bg-surface-container-low text-xs text-on-surface-variant">
+          <span className="inline-block px-3 py-1 rounded-full bg-surface-container-low text-[11px] sm:text-xs text-on-surface-variant">
             ● All statistics below represent demonstration data for platform showcase
           </span>
         </div>
 
         {/* 4 Cities Grid (Enhanced Luxury Bento Style) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {CITIES_DATA.map((city) => {
             const cityVibe =
               city.id === 'pune'
@@ -37,7 +37,7 @@ export const CityDiscovery: React.FC<CityDiscoveryProps> = ({ onSelectCityForPre
               <div
                 key={city.id}
                 onClick={() => onSelectCityForPreview(city.name)}
-                className="group relative h-[420px] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer ring-1 ring-black/5 hover:ring-[#E8B978]/50 hover:-translate-y-2"
+                className="group relative h-[380px] sm:h-[420px] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer ring-1 ring-black/5 hover:ring-[#E8B978]/50 hover:-translate-y-2"
               >
                 {/* Background image with smooth zoom */}
                 <img
@@ -51,11 +51,11 @@ export const CityDiscovery: React.FC<CityDiscoveryProps> = ({ onSelectCityForPre
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent opacity-80" />
 
                 {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                  <span className="px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary-container font-label-caps text-[11px] font-extrabold shadow-sm">
+                <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+                  <span className="px-2.5 sm:px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary-container font-label-caps text-[10px] sm:text-[11px] font-extrabold shadow-sm">
                     {city.accentBadge}
                   </span>
-                  <span className="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white font-label-sm text-[11px] font-medium border border-white/10">
+                  <span className="px-2 sm:px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white font-label-sm text-[10px] sm:text-[11px] font-medium border border-white/10">
                     {cityVibe}
                   </span>
                 </div>

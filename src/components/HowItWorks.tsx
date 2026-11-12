@@ -4,15 +4,15 @@ import { HOW_IT_WORKS_STEPS } from '../data/mockData';
 export const HowItWorks: React.FC = () => {
   return (
     <section id="how-it-works" className="w-full py-16 md:py-24 bg-surface-container-low">
-      <div className="max-w-7xl mx-auto px-margin">
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span className="font-label-caps text-label-caps text-secondary font-bold tracking-widest uppercase mb-3">
             HOW MILO WORKS
           </span>
           <h2 className="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface tracking-tight mb-4">
             The Settler’s Blueprint
           </h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          <p className="font-body-lg text-sm sm:text-body-lg text-on-surface-variant leading-relaxed">
             Relocating without a support network feels daunting. MILO replaces guesswork with trusted hometown connections, safe accommodation, and familiar food.
           </p>
         </div>
@@ -25,7 +25,7 @@ export const HowItWorks: React.FC = () => {
             {HOW_IT_WORKS_STEPS.map((step, idx) => (
               <div
                 key={step.stepNumber}
-                className="bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
+                className="bg-surface-container-lowest p-5 sm:p-8 rounded-3xl shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-8">

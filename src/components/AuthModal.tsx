@@ -55,62 +55,27 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9000,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1.25rem',
-        backgroundColor: 'rgba(16, 43, 39, 0.7)',
-        backdropFilter: 'blur(6px)',
-        animation: 'fadeIn 0.2s ease-out',
-      }}
+      className="fixed inset-0 z-[9000] flex items-center justify-center p-3 sm:p-5 bg-[#102B27]/70 backdrop-blur-[6px] animate-fade-in"
       onClick={onClose}
     >
       <div
-        style={{
-          width: '100%',
-          maxWidth: '520px',
-          backgroundColor: '#FFFFFF',
-          borderRadius: '24px',
-          border: '1px solid #E8E9E3',
-          boxShadow: '0 24px 60px rgba(16, 43, 39, 0.22)',
-          padding: '2rem',
-          position: 'relative',
-          overflow: 'hidden',
-          maxHeight: '90vh',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
+        className="w-full max-w-[520px] bg-white rounded-3xl border border-[#E8E9E3] shadow-[0_24px_60px_rgba(16,43,39,0.22)] p-4 sm:p-8 relative overflow-hidden max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '1.25rem',
-            right: '1.25rem',
-            padding: '8px',
-            borderRadius: '50%',
-            backgroundColor: '#F7F5EF',
-            color: '#26332F',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'background 0.2s',
-          }}
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-full bg-[#F7F5EF] hover:bg-[#EAE8E2] text-[#26332F] flex items-center justify-center transition-colors cursor-pointer"
           aria-label="Close"
         >
           <X size={18} />
         </button>
 
         {/* Modal Header */}
-        <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+        <div className="mb-4 sm:mb-6 text-center pt-1">
           <MiloLogo size="md" showSubtitle />
-          <div style={{ marginTop: '0.75rem' }}>
+          <div className="mt-2.5 sm:mt-3">
             <span className="demo-pill">
               <span className="dot"></span>
               Frontend Settlement Demo
@@ -119,45 +84,25 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </div>
 
         {/* Mode Switcher */}
-        <div
-          style={{
-            display: 'flex',
-            backgroundColor: '#F7F5EF',
-            borderRadius: '12px',
-            padding: '4px',
-            marginBottom: '1.5rem',
-          }}
-        >
+        <div className="flex bg-[#F7F5EF] rounded-xl p-1 mb-4 sm:mb-6 gap-1">
           <button
+            type="button"
             onClick={() => {
               setMode('join');
               setStep(1);
             }}
-            style={{
-              flex: 1,
-              padding: '0.6rem',
-              borderRadius: '8px',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              backgroundColor: mode === 'join' ? '#102B27' : 'transparent',
-              color: mode === 'join' ? '#F7F5EF' : '#536460',
-              transition: 'all 0.2s',
-            }}
+            className={`flex-1 py-2 px-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
+              mode === 'join' ? 'bg-[#102B27] text-[#F7F5EF]' : 'text-[#536460]'
+            }`}
           >
-            Get Started (Join)
+            Get Started
           </button>
           <button
+            type="button"
             onClick={() => setMode('login')}
-            style={{
-              flex: 1,
-              padding: '0.6rem',
-              borderRadius: '8px',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              backgroundColor: mode === 'login' ? '#102B27' : 'transparent',
-              color: mode === 'login' ? '#F7F5EF' : '#536460',
-              transition: 'all 0.2s',
-            }}
+            className={`flex-1 py-2 px-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
+              mode === 'login' ? 'bg-[#102B27] text-[#F7F5EF]' : 'text-[#536460]'
+            }`}
           >
             Log In
           </button>

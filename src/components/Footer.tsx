@@ -12,9 +12,9 @@ export const Footer: React.FC<FooterProps> = ({ onCityClick, onOpenAuth }) => {
   };
 
   return (
-    <footer className="w-full bg-[#102B27] text-on-primary py-space-xl border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-margin">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl mb-space-xl">
+    <footer className="w-full bg-[#102B27] text-on-primary py-12 sm:py-space-xl border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-space-xl mb-10 sm:mb-space-xl">
           {/* Brand info */}
           <div className="lg:col-span-2 flex flex-col gap-space-md">
             <div className="flex items-center gap-space-sm">
@@ -40,14 +40,14 @@ export const Footer: React.FC<FooterProps> = ({ onCityClick, onOpenAuth }) => {
                 MILO
               </span>
             </div>
-            <p className="font-body-md text-body-md text-outline-variant max-w-sm">
+            <p className="font-body-md text-sm sm:text-body-md text-outline-variant max-w-sm leading-relaxed">
               A community-powered relocation and settlement network for newcomers navigating unfamiliar Indian metropolises with warmth, safety, and peer support.
             </p>
-            <div className="flex items-center gap-space-sm pt-space-xs">
-              <span className="inline-flex items-center px-space-md py-1 rounded-full bg-white/10 text-tertiary-fixed-dim font-label-caps text-label-caps">
+            <div className="flex flex-wrap items-center gap-2 pt-space-xs">
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-tertiary-fixed-dim font-label-caps text-[10px] sm:text-label-caps">
                 100% COMMUNITY BACKED
               </span>
-              <span className="inline-flex items-center px-space-md py-1 rounded-full bg-white/10 text-primary-fixed-dim font-label-caps text-label-caps">
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-primary-fixed-dim font-label-caps text-[10px] sm:text-label-caps">
                 PEER MODERATED · DEMO
               </span>
             </div>
@@ -145,9 +145,9 @@ export const Footer: React.FC<FooterProps> = ({ onCityClick, onOpenAuth }) => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-space-lg border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-outline-variant">
+        <div className="pt-6 sm:pt-space-lg border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-space-md font-body-sm text-xs sm:text-body-sm text-outline-variant text-center md:text-left">
           <p>© 2026 MILO City Settlement Network. Demonstration platform for inter-city newcomers across India.</p>
-          <div className="flex items-center gap-space-lg">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-space-lg">
             <button
               type="button"
               onClick={() => handleScrollTo('trust-safety')}

@@ -79,29 +79,29 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-surface" id="interactive-matcher">
-      <div className="max-w-7xl mx-auto px-margin">
-        <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xl shadow-primary-container/5 relative overflow-hidden">
+    <section className="w-full py-12 md:py-24 bg-surface" id="interactive-matcher">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="bg-surface-container-lowest rounded-3xl p-4 sm:p-8 lg:p-12 shadow-xl shadow-primary-container/5 relative overflow-hidden">
           {/* Decorative subtle element */}
           <div className="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-secondary-fixed/20 blur-2xl pointer-events-none" />
 
           {/* Header Row */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 pb-8 border-b border-surface-container">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 mb-8 pb-6 border-b border-surface-container">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-fixed-dim/30 text-on-tertiary-fixed-variant mb-2 font-label-caps text-label-caps">
                 <span className="material-symbols-outlined text-xs">auto_awesome</span>
                 <span>QUICK COMMUNITY MATCHER</span>
               </div>
-              <h2 className="font-headline-lg text-headline-lg text-primary-container">
+              <h2 className="font-headline-lg text-xl sm:text-headline-lg text-primary-container font-extrabold">
                 Personalize Your Settlement Journey
               </h2>
-              <p className="font-body-md text-body-md text-on-surface-variant mt-1">
+              <p className="font-body-md text-xs sm:text-body-md text-on-surface-variant mt-1">
                 Configure your route to preview instant peers, verified flats, and regional food matches.
               </p>
             </div>
-            <div className="flex items-center gap-3 bg-surface-container-low px-4 py-2.5 rounded-full shrink-0">
+            <div className="flex items-center gap-2.5 bg-surface-container-low px-3.5 py-2 rounded-full self-start lg:self-auto shrink-0">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-ping" />
-              <span className="font-label-md text-label-md text-primary-container font-semibold">
+              <span className="font-label-md text-xs sm:text-label-md text-primary-container font-semibold">
                 1,420+ Active Circles Live (Demo)
               </span>
             </div>
@@ -110,13 +110,13 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
           {/* Matcher Form Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Input Controls */}
-            <div className="lg:col-span-7 flex flex-col gap-6">
+            <div className="lg:col-span-7 flex flex-col gap-6 w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Moving From */}
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="originSelect"
-                    className="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5"
+                    className="font-label-md text-xs sm:text-label-md text-on-surface font-semibold flex items-center gap-1.5"
                   >
                     <span className="material-symbols-outlined text-secondary text-base">
                       flight_takeoff
@@ -128,7 +128,7 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
                       id="originSelect"
                       value={origin}
                       onChange={(e) => setOrigin(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer"
+                      className="w-full px-4 py-3 rounded-2xl bg-surface-container-low text-on-surface font-body-md text-sm sm:text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer"
                     >
                       {HOMETOWNS.map((h) => (
                         <option key={h} value={h}>
@@ -146,7 +146,7 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="destinationSelect"
-                    className="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5"
+                    className="font-label-md text-xs sm:text-label-md text-on-surface font-semibold flex items-center gap-1.5"
                   >
                     <span className="material-symbols-outlined text-secondary text-base">
                       flight_land
@@ -158,7 +158,7 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
                       id="destinationSelect"
                       value={destination}
                       onChange={(e) => setDestination(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer"
+                      className="w-full px-4 py-3 rounded-2xl bg-surface-container-low text-on-surface font-body-md text-sm sm:text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer"
                     >
                       {TARGET_CITIES.map((c) => (
                         <option key={c} value={c}>
@@ -175,11 +175,11 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
 
               {/* Native Languages */}
               <div className="flex flex-col gap-2">
-                <label className="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+                <label className="font-label-md text-xs sm:text-label-md text-on-surface font-semibold flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-secondary text-base">translate</span>
                   <span>Native / Regional Language</span>
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {LANGUAGES.map((lang) => {
                     const isSelected = selectedLanguages.includes(lang);
                     return (
@@ -187,7 +187,7 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
                         key={lang}
                         type="button"
                         onClick={() => toggleLanguage(lang)}
-                        className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                        className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-primary-container text-on-primary shadow-xs'
                             : 'bg-surface-container text-on-surface-variant hover:bg-surface-variant'
@@ -200,19 +200,19 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
                 </div>
               </div>
 
-              {/* Immediate Settlement Help Needed */}
+              {/* Immediate Settlement Help Needed - Clean single column on narrow mobile */}
               <div className="flex flex-col gap-2">
-                <label className="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+                <label className="font-label-md text-xs sm:text-label-md text-on-surface font-semibold flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-secondary text-base">checklist</span>
                   <span>Immediate Settlement Help Needed</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
                   {['Broker-Free Flat', 'Home Tiffins', 'Weekend Peers', 'Daily Commute'].map((need) => {
                     const checked = selectedNeeds.includes(need);
                     return (
                       <label
                         key={need}
-                        className={`flex items-center gap-2 p-3 rounded-2xl cursor-pointer transition-colors ${
+                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-2xl cursor-pointer transition-colors ${
                           checked
                             ? 'bg-secondary-container/40 border border-secondary/20'
                             : 'bg-surface-container-low hover:bg-surface-container'
@@ -222,7 +222,7 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
                           type="checkbox"
                           checked={checked}
                           onChange={() => toggleNeed(need)}
-                          className="accent-primary-container w-4 h-4 rounded cursor-pointer"
+                          className="accent-primary-container w-4 h-4 rounded cursor-pointer shrink-0"
                         />
                         <span className="font-body-sm text-xs font-medium text-on-surface">
                           {need}
@@ -235,101 +235,101 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
             </div>
 
             {/* Real-Time Dynamic Result Preview Box - Digital Settler Pass Style */}
-            <div className="lg:col-span-5 bg-gradient-to-br from-[#102B27] to-[#183F39] text-on-primary p-7 rounded-3xl flex flex-col justify-between shadow-2xl relative overflow-hidden border border-white/10">
+            <div className="lg:col-span-5 bg-gradient-to-br from-[#102B27] to-[#183F39] text-on-primary p-4 sm:p-6 lg:p-7 rounded-3xl flex flex-col justify-between shadow-2xl relative overflow-hidden border border-white/10 w-full">
               {/* Subtle ambient light */}
               <div className="absolute top-0 right-0 w-48 h-48 bg-secondary-fixed/15 rounded-full blur-2xl pointer-events-none" />
 
               <div>
                 {/* Pass Header */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-tertiary-fixed-dim text-sm">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <span className="material-symbols-outlined text-tertiary-fixed-dim text-sm shrink-0">
                       confirmation_number
                     </span>
-                    <span className="font-label-caps text-[10px] tracking-widest uppercase text-tertiary-fixed-dim font-bold">
+                    <span className="font-label-caps text-[9px] sm:text-[10px] tracking-widest uppercase text-tertiary-fixed-dim font-bold truncate">
                       DIGITAL SETTLER PASS · SAMPLE
                     </span>
                   </div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/30">
+                  <span className="px-2 sm:px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[9px] sm:text-[10px] font-bold border border-emerald-400/30 shrink-0">
                     98% COMPATIBLE
                   </span>
                 </div>
 
                 {/* Route Badges */}
-                <div className="flex items-center justify-between gap-3 mb-6 bg-white/5 p-4 rounded-2xl border border-white/5">
-                  <div>
-                    <span className="text-[10px] uppercase font-bold text-outline-variant tracking-wider">
+                <div className="flex items-center justify-between gap-2 sm:gap-3 mb-5 bg-white/5 p-3 sm:p-4 rounded-2xl border border-white/5">
+                  <div className="min-w-0">
+                    <span className="text-[9px] sm:text-[10px] uppercase font-bold text-outline-variant tracking-wider">
                       Origin
                     </span>
-                    <h4 className="font-headline-sm text-base font-extrabold text-white">
+                    <h4 className="font-headline-sm text-sm sm:text-base font-extrabold text-white truncate">
                       {originName}
                     </h4>
                   </div>
-                  <div className="flex flex-col items-center">
-                    <span className="material-symbols-outlined text-tertiary-fixed-dim text-lg animate-pulse">
+                  <div className="flex flex-col items-center shrink-0 px-1">
+                    <span className="material-symbols-outlined text-tertiary-fixed-dim text-base sm:text-lg animate-pulse">
                       arrow_right_alt
                     </span>
-                    <span className="text-[9px] text-outline-variant">Direct Circle</span>
+                    <span className="text-[8px] sm:text-[9px] text-outline-variant">Direct Circle</span>
                   </div>
-                  <div className="text-right">
-                    <span className="text-[10px] uppercase font-bold text-outline-variant tracking-wider">
+                  <div className="text-right min-w-0">
+                    <span className="text-[9px] sm:text-[10px] uppercase font-bold text-outline-variant tracking-wider">
                       Destination
                     </span>
-                    <h4 className="font-headline-sm text-base font-extrabold text-white">
+                    <h4 className="font-headline-sm text-sm sm:text-base font-extrabold text-white truncate">
                       {destName}
                     </h4>
                   </div>
                 </div>
 
                 {/* Matches Breakdown */}
-                <div className="flex flex-col gap-2.5">
-                  <div className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5">
-                    <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+                <div className="flex flex-col gap-2 sm:gap-2.5">
+                  <div className="p-2.5 sm:p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5 gap-2">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <span className="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed shrink-0">
                         <span className="material-symbols-outlined text-base">group</span>
                       </span>
-                      <div>
-                        <p className="font-label-md text-xs text-white font-semibold">
+                      <div className="min-w-0">
+                        <p className="font-label-md text-xs text-white font-semibold truncate">
                           {matchMetrics.peers}
                         </p>
-                        <p className="text-[11px] text-outline-variant">{matchMetrics.peerLoc}</p>
+                        <p className="text-[10px] sm:text-[11px] text-outline-variant truncate">{matchMetrics.peerLoc}</p>
                       </div>
                     </div>
-                    <span className="material-symbols-outlined text-emerald-400 text-sm">
+                    <span className="material-symbols-outlined text-emerald-400 text-sm shrink-0">
                       verified
                     </span>
                   </div>
 
-                  <div className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5">
-                    <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-lg bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary-fixed">
+                  <div className="p-2.5 sm:p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5 gap-2">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <span className="w-8 h-8 rounded-lg bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary-fixed shrink-0">
                         <span className="material-symbols-outlined text-base">apartment</span>
                       </span>
-                      <div>
-                        <p className="font-label-md text-xs text-white font-semibold">
+                      <div className="min-w-0">
+                        <p className="font-label-md text-xs text-white font-semibold truncate">
                           {matchMetrics.flats}
                         </p>
-                        <p className="text-[11px] text-outline-variant">{matchMetrics.flatLoc}</p>
+                        <p className="text-[10px] sm:text-[11px] text-outline-variant truncate">{matchMetrics.flatLoc}</p>
                       </div>
                     </div>
-                    <span className="material-symbols-outlined text-emerald-400 text-sm">
+                    <span className="material-symbols-outlined text-emerald-400 text-sm shrink-0">
                       verified
                     </span>
                   </div>
 
-                  <div className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5">
-                    <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+                  <div className="p-2.5 sm:p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between border border-white/5 gap-2">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <span className="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed shrink-0">
                         <span className="material-symbols-outlined text-base">skillet</span>
                       </span>
-                      <div>
-                        <p className="font-label-md text-xs text-white font-semibold">
+                      <div className="min-w-0">
+                        <p className="font-label-md text-xs text-white font-semibold truncate">
                           {matchMetrics.tiffins}
                         </p>
-                        <p className="text-[11px] text-outline-variant">{matchMetrics.tiffinDesc}</p>
+                        <p className="text-[10px] sm:text-[11px] text-outline-variant truncate">{matchMetrics.tiffinDesc}</p>
                       </div>
                     </div>
-                    <span className="material-symbols-outlined text-emerald-400 text-sm">
+                    <span className="material-symbols-outlined text-emerald-400 text-sm shrink-0">
                       verified
                     </span>
                   </div>
@@ -337,17 +337,15 @@ export const InteractiveMatcher: React.FC<InteractiveMatcherProps> = ({ onUnlock
               </div>
 
               {/* Perforated Divider */}
-              <div className="relative my-4">
+              <div className="relative my-4 overflow-hidden py-1">
                 <div className="border-t border-dashed border-white/20" />
-                <div className="absolute -left-10 -top-3 w-6 h-6 rounded-full bg-surface" />
-                <div className="absolute -right-10 -top-3 w-6 h-6 rounded-full bg-surface" />
               </div>
 
               <div>
                 <button
                   type="button"
                   onClick={handlePassClick}
-                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#E8B978] to-[#f0c58a] hover:from-[#dca961] hover:to-[#e4b574] text-[#102B27] font-label-md text-xs font-extrabold flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-[1.02] cursor-pointer shimmer-btn"
+                  className="w-full py-3 sm:py-3.5 rounded-full bg-gradient-to-r from-[#E8B978] to-[#f0c58a] hover:from-[#dca961] hover:to-[#e4b574] text-[#102B27] font-label-md text-xs font-extrabold flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-[1.02] cursor-pointer shimmer-btn"
                 >
                   <span>Claim Your Settler Pass</span>
                   <span className="material-symbols-outlined text-base">arrow_forward</span>

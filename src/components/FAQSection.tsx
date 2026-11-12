@@ -12,26 +12,26 @@ export const FAQSection: React.FC = () => {
 
   return (
     <section className="w-full py-16 md:py-24 bg-surface-container-low" id="faq-section">
-      <div className="max-w-4xl mx-auto px-margin">
-        <div className="flex flex-col items-center text-center mb-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
           <span className="font-label-caps text-label-caps text-secondary font-bold tracking-widest uppercase mb-2">
             COMMON QUESTIONS
           </span>
           <h2 className="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary-container tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant mt-2">
+          <p className="font-body-md text-sm sm:text-body-md text-on-surface-variant mt-2 leading-relaxed">
             Everything you need to know about navigating MILO as a newcomer or peer mentor.
           </p>
         </div>
 
-        <div className="flex flex-col gap-3.5">
+        <div className="flex flex-col gap-3 sm:gap-3.5">
           {FAQ_DATA.map((faq) => {
             const isOpen = openIds.includes(faq.id);
             return (
               <div
                 key={faq.id}
-                className={`bg-surface-container-lowest p-6 rounded-2xl transition-all duration-300 border ${
+                className={`bg-surface-container-lowest p-4 sm:p-6 rounded-2xl transition-all duration-300 border ${
                   isOpen
                     ? 'border-secondary shadow-md'
                     : 'border-outline-variant/30 hover:border-outline-variant hover:shadow-xs'

@@ -54,54 +54,58 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* Main Section Content */}
-      <div className="max-w-7xl mx-auto px-margin relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left: Hero Headline & Narrative */}
-          <div className="lg:col-span-7 flex flex-col items-start gap-6">
+          <div className="lg:col-span-7 flex flex-col items-start gap-5 sm:gap-6">
             {/* Top Badges: Brand Tag + City Horizon Selector */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary-container/70 text-primary-container shadow-xs">
+            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row sm:items-center lg:items-start xl:items-center gap-2.5 w-full">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container/70 text-primary-container shadow-xs self-start shrink-0">
                 <span className="material-symbols-outlined text-sm font-semibold text-secondary">
                   eco
                 </span>
-                <span className="font-label-caps text-label-caps tracking-widest uppercase">
+                <span className="font-label-caps text-[10px] sm:text-label-caps tracking-widest uppercase">
                   PREMIUM CITY SETTLEMENT NETWORK
                 </span>
               </div>
 
-              {/* Quick Destination Backdrop Switcher */}
-              <div className="inline-flex items-center gap-1 p-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/40 shadow-xs text-xs">
-                <span className="material-symbols-outlined text-xs text-secondary pl-2">
-                  location_city
-                </span>
-                <span className="font-label-caps text-[10px] text-on-surface-variant font-bold pr-1">
-                  HORIZON:
-                </span>
-                {(['pune', 'bengaluru', 'mumbai', 'hyderabad'] as const).map((cityKey) => (
-                  <button
-                    key={cityKey}
-                    type="button"
-                    onClick={() => handleCitySelect(cityKey)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold capitalize transition-all cursor-pointer ${
-                      selectedCityKey === cityKey
-                        ? 'bg-primary-container text-on-primary shadow-xs scale-105'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
-                    }`}
-                  >
-                    {cityKey}
-                  </button>
-                ))}
+              {/* Quick Destination Backdrop Switcher - Wraps cleanly on narrow screens, inline on desktop */}
+              <div className="w-full sm:w-auto max-w-full py-0.5">
+                <div className="inline-flex flex-wrap sm:flex-nowrap items-center gap-1 p-1.5 sm:p-1 rounded-2xl sm:rounded-full bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/40 shadow-xs text-xs max-w-full">
+                  <span className="inline-flex items-center gap-1 shrink-0 pl-1.5 sm:pl-2 pr-1">
+                    <span className="material-symbols-outlined text-xs text-secondary shrink-0">
+                      location_city
+                    </span>
+                    <span className="font-label-caps text-[10px] text-on-surface-variant font-bold shrink-0">
+                      HORIZON:
+                    </span>
+                  </span>
+                  {(['pune', 'bengaluru', 'mumbai', 'hyderabad'] as const).map((cityKey) => (
+                    <button
+                      key={cityKey}
+                      type="button"
+                      onClick={() => handleCitySelect(cityKey)}
+                      className={`px-2.5 sm:px-3 py-1 rounded-full text-xs font-semibold capitalize transition-all cursor-pointer shrink-0 ${
+                        selectedCityKey === cityKey
+                          ? 'bg-primary-container text-on-primary shadow-xs sm:scale-105'
+                          : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                      }`}
+                    >
+                      {cityKey}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-display-hero text-headline-xl-mobile md:text-display-hero text-on-surface tracking-tight leading-[1.08]">
+            <h1 className="font-display-hero text-[32px] leading-[38px] sm:text-headline-xl-mobile md:text-display-hero text-on-surface tracking-tight leading-[1.08]">
               Your new city.
               <br />
               <span className="relative inline-block text-primary-container">
                 Your people.
                 <svg
-                  className="absolute -bottom-2.5 left-0 w-full overflow-visible pointer-events-none"
+                  className="absolute -bottom-2.5 left-0 w-full max-w-[260px] sm:max-w-[280px] overflow-visible pointer-events-none"
                   fill="none"
                   height="12"
                   viewBox="0 0 280 12"
@@ -118,19 +122,19 @@ export const Hero: React.FC<HeroProps> = ({
             </h1>
 
             {/* Narrative text */}
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+            <p className="font-body-lg text-sm sm:text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
               Moving somewhere new doesn't mean starting alone. Find people from your hometown, discover trusted local communities, secure vetted flats, and make your new city feel like home from day one.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
               <a
                 href="#interactive-matcher"
                 onClick={(e) => {
                   e.preventDefault();
                   onFindCommunityClick();
                 }}
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-[0_8px_24px_rgba(16,43,39,0.22)] hover:bg-[#183F39] transition-all hover:scale-[1.02] cursor-pointer shimmer-btn"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-primary-container text-on-primary font-label-md text-xs sm:text-label-md shadow-[0_8px_24px_rgba(16,43,39,0.22)] hover:bg-[#183F39] transition-all hover:scale-[1.02] cursor-pointer shimmer-btn text-center"
               >
                 <span>Find Your Community</span>
                 <span className="material-symbols-outlined text-base">arrow_forward</span>
@@ -141,7 +145,7 @@ export const Hero: React.FC<HeroProps> = ({
                   e.preventDefault();
                   onExploreCitiesClick();
                 }}
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-surface-container-lowest text-primary-container font-label-md text-label-md shadow-xs hover:bg-surface-container transition-all cursor-pointer border border-outline-variant/30"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full bg-surface-container-lowest text-primary-container font-label-md text-xs sm:text-label-md shadow-xs hover:bg-surface-container transition-all cursor-pointer border border-outline-variant/30 text-center"
               >
                 <span className="material-symbols-outlined text-base text-secondary">explore</span>
                 <span>Explore Cities</span>
@@ -149,9 +153,9 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Quick Interactive Journey Search Dock */}
-            <div className="w-full max-w-xl bg-surface-container-lowest/90 backdrop-blur-xl p-2.5 rounded-2xl border border-outline-variant/40 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2">
-              <div className="flex-1 flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-surface-container/60">
-                <span className="material-symbols-outlined text-secondary text-base">
+            <div className="w-full max-w-xl bg-surface-container-lowest/90 backdrop-blur-xl p-2 sm:p-2.5 rounded-2xl border border-outline-variant/40 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2">
+              <div className="flex-1 flex items-center gap-2.5 px-3 py-2 rounded-xl bg-surface-container/60">
+                <span className="material-symbols-outlined text-secondary text-base shrink-0">
                   person_pin_circle
                 </span>
                 <div className="flex flex-col text-left min-w-0">
@@ -166,8 +170,8 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="hidden sm:flex items-center text-outline-variant">
                 <span className="material-symbols-outlined text-sm">trending_flat</span>
               </div>
-              <div className="flex-1 flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-surface-container/60">
-                <span className="material-symbols-outlined text-amber-600 text-base">
+              <div className="flex-1 flex items-center gap-2.5 px-3 py-2 rounded-xl bg-surface-container/60">
+                <span className="material-symbols-outlined text-amber-600 text-base shrink-0">
                   apartment
                 </span>
                 <div className="flex flex-col text-left min-w-0">
@@ -182,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={onFindCommunityClick}
-                className="px-4 py-2.5 rounded-xl bg-primary-container hover:bg-[#183F39] text-on-primary text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer shrink-0 shadow-xs"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-primary-container hover:bg-[#183F39] text-on-primary text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer shrink-0 shadow-xs"
               >
                 <span>Match</span>
                 <span className="material-symbols-outlined text-sm">bolt</span>
@@ -190,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Micro Proof Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-2 text-on-surface-variant font-body-sm text-body-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-2 text-on-surface-variant font-body-sm text-body-sm">
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
                   <div className="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-label-caps text-on-surface shadow-xs">
@@ -204,11 +208,11 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                 </div>
                 <div>
-                  <p className="font-label-md text-label-md text-on-surface font-semibold">
+                  <p className="font-label-md text-xs sm:text-label-md text-on-surface font-semibold">
                     14,200+ Newcomers{' '}
-                    <span className="text-[11px] font-normal text-secondary">(Demonstration Metric)</span>
+                    <span className="text-[10px] sm:text-[11px] font-normal text-secondary">(Demo Metric)</span>
                   </p>
-                  <p className="text-xs text-on-surface-variant">
+                  <p className="text-[11px] sm:text-xs text-on-surface-variant">
                     Settled across Pune, Bengaluru, Mumbai &amp; Hyd
                   </p>
                 </div>
@@ -225,10 +229,10 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Right: Visual Collage & Interactive Previews */}
-          <div className="lg:col-span-5 relative w-full flex justify-center">
-            <div className="relative w-full max-w-md">
+          <div className="lg:col-span-5 relative w-full flex justify-center pt-8 pb-6 sm:pt-0 sm:pb-0">
+            <div className="relative w-full max-w-md mx-auto">
               {/* Main Lifestyle Visual */}
-              <div className="w-full h-[440px] rounded-3xl overflow-hidden shadow-2xl bg-surface-container relative ring-1 ring-black/5">
+              <div className="w-full h-[380px] sm:h-[420px] lg:h-[440px] rounded-3xl overflow-hidden shadow-2xl bg-surface-container relative ring-1 ring-black/5">
                 <img
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   alt={`Diverse friends connecting in ${backdrop.name}`}
@@ -236,8 +240,8 @@ export const Hero: React.FC<HeroProps> = ({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-container/90 via-primary-container/20 to-transparent" />
 
-                {/* Top Right Floating Pill: Housing Match */}
-                <div className="absolute top-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-2 border border-outline-variant/20 animate-float-reverse">
+                {/* Top Right Floating Pill: Housing Match (shown where horizontal room avoids mentor card overlap) */}
+                <div className="hidden sm:flex lg:hidden xl:flex absolute top-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg items-center gap-2 border border-outline-variant/20 animate-float-reverse">
                   <span className="material-symbols-outlined text-emerald-600 text-sm">home_pin</span>
                   <span className="text-[11px] font-bold text-primary-container">
                     Zero Brokerage Flat · Baner
@@ -245,64 +249,64 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
 
                 {/* Bottom Overlaid Live Circle Info */}
-                <div className="absolute bottom-4 left-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50">
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="font-label-md text-label-md text-primary-container font-bold">
+                <div className="absolute bottom-7 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-surface-container-lowest/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl border border-white/50">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span className="font-label-md text-xs sm:text-label-md text-primary-container font-bold truncate">
                         {backdrop.circleInfo}
                       </span>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-[10px] tracking-wider font-semibold">
-                      ACTIVE TODAY · SAMPLE
+                    <span className="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-[9px] sm:text-[10px] tracking-wider font-semibold shrink-0">
+                      ACTIVE TODAY
                     </span>
                   </div>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  <p className="font-body-sm text-[11px] sm:text-xs text-on-surface-variant line-clamp-2">
                     {backdrop.quote}
                   </p>
                 </div>
               </div>
 
-              {/* Floating Top-Left Mentor Card with Float Animation */}
+              {/* Floating Top-Left Mentor Card with responsive safe positioning */}
               <div
-                className="absolute -top-6 -left-6 sm:-left-8 bg-surface-container-lowest p-3.5 rounded-2xl shadow-2xl flex items-center gap-3.5 max-w-xs cursor-pointer transition-transform hover:scale-105 border border-outline-variant/30 animate-float"
+                className="absolute -top-7 left-2 sm:-left-6 sm:-top-6 bg-surface-container-lowest p-2.5 sm:p-3.5 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3.5 max-w-[calc(100%-16px)] sm:max-w-xs cursor-pointer transition-transform hover:scale-105 border border-outline-variant/30 animate-float"
                 onClick={onOpenMentorModal}
                 title="Click to view sample mentor profile"
               >
-                <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 bg-surface-variant">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden shrink-0 bg-surface-variant">
                   <img
                     className="w-full h-full object-cover"
                     alt="Aarav Sharma sample profile"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiPAEwfOxrQMu2bXQo13D-u8-PduXg8a4vkARIIfd285joljQYbjVZb_CGVWYEp3D43X_JuoQ3forpByvz8-e0KUdb7iQE0xq7mjYLEonnU57yUVyO3OBXTb6N4UySt_qR-k08YXdOPLbQikj2uVaPhH0y8zihv7tgy1HD7ECeECDkVUtiSO8EADsLh3a4ByPLdVz4JywnFCYSaoEcH5UwOcNX9cT--ZHuZo97r5WI"
                   />
-                  <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-surface-container-lowest" />
+                  <span className="absolute bottom-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-emerald-500 ring-2 ring-surface-container-lowest" />
                 </div>
                 <div className="flex flex-col min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <h4 className="font-label-md text-label-md text-on-surface truncate font-bold">
+                    <h4 className="font-label-md text-xs sm:text-label-md text-on-surface truncate font-bold">
                       Aarav Sharma
                     </h4>
                     <span className="inline-flex items-center px-1.5 py-0.2 rounded-full bg-amber-50 text-[10px] font-bold text-amber-700 border border-amber-200/60">
                       ★ 4.9
                     </span>
                   </div>
-                  <p className="font-body-sm text-xs text-on-surface-variant truncate">
+                  <p className="font-body-sm text-[11px] sm:text-xs text-on-surface-variant truncate">
                     Jaipur → Pune (Viman Nagar)
                   </p>
-                  <div className="mt-1">
-                    <span className="inline-block px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-fixed font-label-caps text-[10px] font-bold">
+                  <div className="mt-0.5 sm:mt-1">
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-fixed font-label-caps text-[9px] sm:text-[10px] font-bold">
                       Helped 28 Newcomers · Demo
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Bottom-Right Verified Alert Pill */}
-              <div className="absolute -bottom-4 -right-4 sm:-right-6 bg-primary-container text-on-primary px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-white/10 animate-float-reverse">
-                <span className="material-symbols-outlined text-tertiary-fixed-dim text-lg">
+              {/* Floating Bottom-Right Verified Alert Pill with responsive safe positioning */}
+              <div className="absolute -bottom-5 right-2 sm:-bottom-4 sm:-right-6 bg-primary-container text-on-primary px-3 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-xl flex items-center gap-1.5 sm:gap-2 border border-white/10 animate-float-reverse max-w-[calc(100%-16px)] sm:max-w-none">
+                <span className="material-symbols-outlined text-tertiary-fixed-dim text-base sm:text-lg shrink-0">
                   restaurant
                 </span>
-                <span className="font-label-sm text-label-sm tracking-wide font-medium">
+                <span className="font-label-sm text-[11px] sm:text-label-sm tracking-wide font-medium truncate">
                   14 Homemade Tiffin hubs in {backdrop.name} (Demo)
                 </span>
               </div>

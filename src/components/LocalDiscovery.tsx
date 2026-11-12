@@ -9,10 +9,10 @@ interface LocalDiscoveryProps {
 export const LocalDiscovery: React.FC<LocalDiscoveryProps> = ({ onSelectService }) => {
   return (
     <section className="w-full py-16 md:py-24 bg-surface" id="local-discovery">
-      <div className="max-w-7xl mx-auto px-margin">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-margin">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="font-label-caps text-label-caps text-secondary font-bold tracking-widest uppercase">
                 DAILY ESSENTIALS
               </span>
@@ -23,18 +23,18 @@ export const LocalDiscovery: React.FC<LocalDiscoveryProps> = ({ onSelectService 
             <h2 className="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary-container tracking-tight">
               Curated Tiffins, Commute &amp; Healthcare
             </h2>
-            <p className="font-body-md text-body-md text-on-surface-variant mt-2 max-w-xl">
+            <p className="font-body-md text-sm sm:text-body-md text-on-surface-variant mt-2 max-w-xl leading-relaxed">
               Demonstration previews of everyday essentials: authentic regional home-style food, shared neighborhood transit, laundry care, and clinic contacts.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {LOCAL_SERVICES_DATA.map((service) => (
             <div
               key={service.id}
               onClick={() => onSelectService(service)}
-              className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-xl hover:border-primary-container/20 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group"
+              className="bg-surface-container-lowest p-5 sm:p-6 rounded-3xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-xl hover:border-primary-container/20 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group"
             >
               <div>
                 <div
@@ -57,7 +57,7 @@ export const LocalDiscovery: React.FC<LocalDiscoveryProps> = ({ onSelectService 
                   {service.description}
                 </p>
               </div>
-              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
+              <div className="pt-4 border-t border-surface-container flex flex-wrap items-center justify-between gap-2">
                 <span className="text-xs font-bold text-primary-container">
                   {service.priceNote}
                 </span>

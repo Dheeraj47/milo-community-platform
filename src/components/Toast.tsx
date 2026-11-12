@@ -26,23 +26,7 @@ export const Toast: React.FC<ToastProps> = ({ toast, onClose }) => {
 
   return (
     <div
-      style={{
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        zIndex: 9999,
-        backgroundColor: '#102B27',
-        color: '#F7F5EF',
-        padding: '1rem 1.25rem',
-        borderRadius: '16px',
-        boxShadow: '0 12px 30px rgba(16, 43, 39, 0.25)',
-        border: '1px solid #26332F',
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: '0.85rem',
-        maxWidth: '380px',
-        animation: 'fadeIn 0.25s ease-out',
-      }}
+      className="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-[9999] bg-[#102B27] text-[#F7F5EF] p-4 rounded-2xl shadow-[0_12px_30px_rgba(16,43,39,0.25)] border border-[#26332F] flex items-start gap-3 sm:max-w-[380px] animate-fade-in"
     >
       <div style={{ marginTop: '2px', color: toast.type === 'info' ? '#E8B978' : '#D6E8CF' }}>
         {toast.type === 'info' ? <Info size={20} /> : <CheckCircle2 size={20} />}

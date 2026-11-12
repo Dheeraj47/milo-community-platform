@@ -5,6 +5,9 @@
   body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   body {
     overscroll-behavior: none;
@@ -19,6 +22,29 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* Hide scrollbars for controlled horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Responsive padding for Stitch layout containers */
+@media (max-width: 639px) {
+  .px-margin {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .px-margin {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
 }
 
 .material-symbols-outlined {
@@ -39,10 +65,12 @@
 
 #root {
   width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   border: none;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
